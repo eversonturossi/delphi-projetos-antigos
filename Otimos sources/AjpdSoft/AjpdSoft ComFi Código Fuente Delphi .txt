@@ -1,0 +1,3 @@
+Descripción: Código fuente del programa AjpdSoft ComFi en Delphi 6.
+Versión: 1.0.1.2 Tamaño del archivo: 392.00 Kb
+Agregado el: 06-11-2003 Descargas: 130

@@ -1,0 +1,2 @@
+Descripción: Código fuente en Delphi 6 de la aplicación AjpdSoft Actualización automática (comprueba si existe una nueva versión de la aplicación instalada (en un sitio FTP) y si existe muestra las nuevas mejoras, permite descargar la nueva versión (mediante conexión a FTP) y actualizar automáticamente la aplicación. Esta aplicación es útil para desarrolladores de software que deseen incluir una opción de actualización automática de sus aplicaciones mediante Internet (FTP).
+Versión: 1.0.2.6 Tamaño del archivo: 984.00 Kb

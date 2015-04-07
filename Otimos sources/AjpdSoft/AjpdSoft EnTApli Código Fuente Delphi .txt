@@ -1,0 +1,2 @@
+Descripción: Código fuente en Delphi 6 del programa AjpdSoft EnTApli (envía pulsaciones de teclas a otras aplicaciones)
+Versión: 1.0.0.2 Tamaño del archivo: 548.00 Kb

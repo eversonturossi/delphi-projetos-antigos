@@ -1,0 +1,2 @@
+Descripción: Código fuente en Delphi 6 del programa AjpdSoft Trocear Fichero (divide un fichero en varias partes para luego ser unidas)
+Versión: 1.0.3.77 Tamaño del archivo: 316.00 Kb

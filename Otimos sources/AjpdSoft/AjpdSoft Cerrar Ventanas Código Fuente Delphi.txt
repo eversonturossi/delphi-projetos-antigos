@@ -1,0 +1,2 @@
+Descripción: Código fuente en Delphi 6 de la aplicación AjpdSoft Cerrar Ventanas (cierra las ventanas especificadas (por el texto que aparece en la barra de título) cada cierto tiempo (también configurable). Puede ser útil como antipopup (ventanas emergentes de publicidad de Internet), también se puede utilizar para cerrar determinados programas cada cierto tiempo).
+Versión: 2.4.1.189 Tamaño del archivo: 332.00 Kb

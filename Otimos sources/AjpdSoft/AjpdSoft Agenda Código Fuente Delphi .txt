@@ -1,0 +1,2 @@
+Descripción: Código fuente en Delphi 6 de la aplicación AjpdSoft Agenda (agenda telefónica que guarda en una base de datos el nombre, teléfono, móvil, email... Permite exportar dichos datos a Microsoft Excel y admite búsquedas por cualquier campo. Se puede minimizar en la barra de notificación de Windows)
+Versión: 1.0.1.3 Tamaño del archivo: 696.00 Kb

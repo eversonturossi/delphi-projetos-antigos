@@ -1,0 +1,4 @@
+Descripción: Busca ficheros, carpetas, URLs, Link, Cookies, claves de registro y valores de registro especificados en la base de datos. Si localiza algún elemento muestra dónde lo encontró y permite eliminarlo. La base de datos de acciones a realizar es abierta y, el propio programa, admite la posibilidad de añadir nuevos elementos y acciones a realizar en caso de encontrarlos. Las bases de datos utilizadas con Paradox, con lo cual, para el acceso a las mismas (y para que la aplicación funcione) deberá tener instalado el BDE (Borland Database Engine).
+
+ATENCIÓN: este programa está en fase Beta, lo que implica que aún no está terminado y puede variar su formato. También habrá opciones aún no disponibles.
+Versión: 1.0.0.36 Tamaño del archivo: 532.00 Kb

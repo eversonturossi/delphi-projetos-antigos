@@ -1,0 +1,3 @@
+  AjpdSoft IDServicios Código Fuente Delphi 
+Descripción: Código fuente de la aplicación: comando MS-DOS, válido para WXP, WNT, W2000, W2003 que inicia y detiene servicios.
+Versión: 1.0 Tamaño del archivo: 8.00 Kb

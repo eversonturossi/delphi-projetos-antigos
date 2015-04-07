@@ -1,0 +1,11 @@
+Descripción: Código fuente completo en Delphi 6 del programa AjpdSoft Aviso cambio IP pública: obtiene la IP pública del PC en el que se ejecuta y admite la posibilidad de enviarla (si ha cambiado con respecto a la última vez):
+1.- Por email a la dirección especificada.
+2.- Por socket: guarda la IP (cuando cambie) en un PC Remoto configurado como servidor de IPs.
+3.- En servidor de Base de Datos MySQL remoto: guarda la IP en una base de datos MySQL (versión desde la 3.20 a la 4.1) remota par su posterior consulta.
+
+Este programa es útil para aquellos usuarios que, no teniendo una IP pública fija, quieran saber en todo momento qué IP tienen en su PC para, por ejemplo, conectarse remotamente desde otro PC.
+
+También permite enviar un Ping a otro PC con la aplicación ejecutándose y obtener un mensaje de ésta.
+
+(Si desea guardar la IP en un servidor de Base de Datos MySQL necesitará la dll "libmysql**.dll" incluida en esta descarga junto con el componente para Dephi y acceso a MySQL que es gratuito).
+Versión: 2.9.9.431 Tamaño del archivo: 3.04 MB

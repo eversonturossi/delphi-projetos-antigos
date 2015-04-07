@@ -1,0 +1,2 @@
+Descripción: Código fuente / Source Code en Delphi 6 del programa AjpdSoft BTF (busca una cadena de texto dentro de cualquier tipo de fichero. Admite comidines para los ficheros en los que buscará, busca dentro de las subcarpetas y puede hacerlo desde una ruta especificada. Es posible configurar la prioridad para la carga del procesador y también imprime los resultados de la búsqueda. Muestra un extracto del texto encontrado dentro del fichero)
+Versión: 1.0.1.235 Tamaño del archivo: 308.00 Kb
