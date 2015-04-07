@@ -1,0 +1,11 @@
+*.dcu
+*.local
+*.exe
+*.dll
+*.identcache
+
+*.patch
+*.diff
+
+Win32
+Win64
