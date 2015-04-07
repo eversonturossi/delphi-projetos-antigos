@@ -1,0 +1,122 @@
+
+
+- Automatic fill out HTML forms with TWebBrowser?
+   Author: Simon Grossenbacher - webmaster@swissdelphicenter.ch
+   Homepage: http://www.swissdelphicenter.ch
+
+
+
+
+{ To test this code put a TWebBrowser and A TButton component on the form }
+
+
+function FillForm(WebBrowser: TWebBrowser; FieldName: string; Value: string): Boolean; 
+var 
+  i, j: Integer; 
+  FormItem: Variant; 
+begin 
+  Result := False; 
+  //no form on document 
+  if WebBrowser.OleObject.Document.all.tags('FORM').Length = 0 then 
+  begin 
+    Exit; 
+  end; 
+  //count forms on document 
+  for I := 0 to WebBrowser.OleObject.Document.forms.Length - 1 do 
+  begin 
+    FormItem := WebBrowser.OleObject.Document.forms.Item(I); 
+    for j := 0 to FormItem.Length - 1 do 
+    begin 
+      try 
+        //when the fieldname is found, try to fill out 
+        if FormItem.Item(j).Name = FieldName then 
+        begin 
+          FormItem.Item(j).Value := Value; 
+          Result := True; 
+        end; 
+      except 
+        Exit; 
+      end; 
+    end; 
+  end; 
+end; 
+
+
+//When the document is complete try to fill out the field homepage with the url 
+procedure TForm1.WebBrowser1DocumentComplete(Sender: TObject; 
+  const pDisp: IDispatch; var URL: OleVariant); 
+begin 
+  // Show the Titel of the currently active Webpage in the titlebar 
+  // Den Titel der aktuellen Webseite in der Titeleiste anzeigen 
+  Caption := Webbrowser1.OleObject.Document.Title; 
+
+  if FillForm(WebBrowser1, 'homepage', 'http://www.swissdelphicenter.ch') = False then 
+    ShowMessage('Error. Field not available or no Form found.');
+end;
+
+// Show the Webbrowser-Progress in Label1 
+procedure TForm1.WebBrowser1ProgressChange(Sender: TObject; Progress, ProgressMax: Integer); 
+begin 
+  if ProgressMax = 0 then 
+  begin 
+    label1.Caption := ''; 
+    Exit; 
+  end; 
+  try 
+    if (Progress <> -1) and (Progress <= ProgressMax) then 
+      label1.Caption := IntToStr((Progress * 100) div ProgressMax) + '% loaded...' 
+    else 
+      label1.Caption := ''; 
+  except 
+    on EDivByZero do Exit; 
+  end; 
+end; 
+
+
+//For example you can load the page /en/addtip.php to the TWebBrowser 
+//When the document is Complete the form where you can put your homepage 
+//address is filled out 
+procedure TForm1.Button1Click(Sender: TObject); 
+begin 
+  Webbrowser1.Navigate('http://www.swissdelphicenter.ch/en/addtip.php'); 
+
+end;
+
+
+------------------------------------------------
+function FillForm(WebBrowser: TWebBrowser; FieldName: string; Value: string;
+  Submit: Boolean = False): Boolean;
+var
+  i, j: Integer;
+  FormItem: Variant;
+begin
+  Result := False;
+
+  //no form on document
+  if WebBrowser.OleObject.Document.all.tags('form').Length = 0 then
+    Exit;
+
+  //count forms on document
+  for I := 0 to WebBrowser.OleObject.Document.forms.Length - 1 do
+  begin
+    FormItem := WebBrowser.OleObject.Document.forms.Item(I);
+
+    for j := 0 to FormItem.Length - 1 do
+    begin
+      try
+        //when the fieldname is found, try to fill out
+        if FormItem.Item(j).Name = FieldName then
+        begin
+          FormItem.Item(j).Value := Value;
+
+          if Submit then
+            FormItem.submit;//<-- importante
+
+          Result := True;
+        end;
+      except
+        Exit;
+      end;
+    end;
+  end;
+end;

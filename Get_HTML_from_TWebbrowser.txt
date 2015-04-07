@@ -1,0 +1,61 @@
+
+- get/save the HTML Code from a TWebbrowser?
+Author: Thomas Stutz - tom@swissdelphicenter.ch
+
+
+
+
+uses 
+  ActiveX; 
+
+function WB_SaveHTMLCode(WebBrowser: TWebBrowser; const FileName: TFileName): Boolean; 
+var 
+  ps: IPersistStreamInit; 
+  fs: TFileStream; 
+  sa: IStream; 
+begin 
+  ps := WebBrowser.Document as IPersistStreamInit; 
+  fs := TFileStream.Create(FileName, fmCreate); 
+  try 
+    sa := TStreamAdapter.Create(fs, soReference) as IStream; 
+    Result := Succeeded(ps.Save(sa, True)); 
+  finally 
+    fs.Free; 
+  end; 
+end; 
+
+function WB_GetHTMLCode(WebBrowser: TWebBrowser; ACode: TStrings): Boolean; 
+var 
+  ps: IPersistStreamInit; 
+  ss: TStringStream; 
+  sa: IStream; 
+  s: string; 
+begin 
+  ps := WebBrowser.Document as IPersistStreamInit; 
+  s := ''; 
+  ss := TStringStream.Create(s); 
+  try 
+    sa := TStreamAdapter.Create(ss, soReference) as IStream; 
+    Result := Succeeded(ps.Save(sa, True)); 
+    if Result then ACode.Add(ss.Datastring); 
+  finally 
+    ss.Free; 
+  end; 
+end; 
+
+procedure TForm1.Button1Click(Sender: TObject); 
+begin 
+  WB_SaveHTMLCode(Webbrowser1, 'c:\test.txt'); 
+end; 
+
+procedure TForm1.Button2Click(Sender: TObject); 
+begin 
+  WB_GetHTMLCode(Webbrowser1, Memo1.Lines); 
+end;
+
+-------------------------------------------------------------------------------------------------------------
+Mais simples:
+
+S := WebBrowser1.OleObject.Document.body.innerHTML;
+innerTex retorna o Texto da pagina
+

@@ -1,0 +1,8 @@
+How to copy data between TWebBrowsers. 
+If you ever wondered how to copy documents from one TWebBrowser just use this code. Using the Navigate() function is just a waste of time and not always will give you them same result (if a webpage changed in the meantime). 
+var
+  Body1, Body2: IHTMLElement;
+...
+  Body1 := IHTMLDocument2(WebBrowser1.Document).Body;
+  Body2 := IHTMLDocument2(WebBrowser2.Document).Body;
+  Body2.OuterHtml := Body1.OuterHtml;

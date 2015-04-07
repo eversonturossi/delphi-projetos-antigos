@@ -1,0 +1,8 @@
+How to hide TWebBrowser scrollbars. 
+If you want to block the ability to use scrollbars in TWebBrowser then you can simply hide them. Here's the code that'll do that. 
+  ...
+  with WebBrowser1.OleObject.Document.Body.Style do
+    OverflowX := 'hidden';
+    OverflowY := 'hidden';
+  end;
+  ...

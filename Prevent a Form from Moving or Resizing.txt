@@ -1,0 +1,20 @@
+Category: Forms
+Title: Prevent a Form from Moving or Resizing
+Date added: 15.03.2006
+Hits: 1857
+
+private
+procedure WMSysCommand(var Msg: TWMSysCommand); message WM_SYSCOMMAND;
+
+implementation
+
+procedure TForm1.WMSysCommand(var Msg: TWMSysCommand);
+begin
+  if ((Msg.CmdType and $FFF0) = SC_MOVE) or
+    ((Msg.CmdType and $FFF0) = SC_SIZE) then
+  begin
+    Msg.Result := 0;
+    Exit;
+  end;
+  inherited;
+end;

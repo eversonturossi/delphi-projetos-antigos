@@ -1,0 +1,15 @@
+
+How to read progress with TWebBrowser. 
+When using the TWebBrowser you might like a progress bar to let your users know how to page loading is going. Here's a simple idea that requires a TProgressBar component (Win32 component palette).
+Just put this code in the TWebBrower's OnProgressChange event. 
+uses
+  OleCtrls, SHDocVw;
+...
+if Progress > 0 then begin
+  ProgressBar1.MaxValue := ProgressMax;
+  ProgressBar1.Position := Progress;
+end else
+  ProgressBar1.Progress := 0;
+...
+
+ 

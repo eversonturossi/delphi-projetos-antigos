@@ -1,0 +1,16 @@
+Category: Forms
+Title: Prevent movement of a form outside the desktop
+Date added: 15.03.2006
+Hits: 2178
+
+
+procedure TForm1.FormMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
+begin
+  if Form1.Left <= 0 then Form1.Left := 0;
+  if Form1.Top <= 0 then Form1.Top := 0;
+  if Form1.Left >= Screen.Width - Form1.Width then
+    Form1.Left := Screen.Width - Form1.Width;
+  if Form1.Top >= Screen.Height - Form1.Height then
+    Form1.Top := Screen.Height - Form1.Height;
+end; 

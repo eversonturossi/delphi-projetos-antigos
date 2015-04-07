@@ -1,0 +1,14 @@
+// Insira um botão, um memo e um webrowser no form
+// De um load em uma página qualquer no evento OnCreate (ou ao seu critério) conforme abaixo:
+
+webbrowser1.Navigate('http://www.planetadelphi.com.br/');
+
+//Coloque o seguinte código no botão
+
+procedure TForm1.Button1Click(Sender: TObject);
+Var
+S:Variant;
+begin
+S := WebBrowser1.Document;
+Memo1.Lines.Add(S.Body.innerHTML);
+end;

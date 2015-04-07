@@ -1,0 +1,17 @@
+How to use TWebBrowser printing functions. 
+After navigating to a page with TWebBrowser you may want to print it. Well, the Microsoft Internet Explorer control can do that, show a print preview dialog, and even a page setup dialog. 
+var
+  vaIn, vaOut: OleVariant; // Needed in all examples
+  ...
+  // Printing without the Printer dialog
+  WebBrowser1.ControlInterface.ExecWB(OLECMDID_PRINT, OLECMDEXECOPT_DONTPROMPTUSER,
+    vaIn, vaOut);
+  // Print with the Printer dialog
+  WebBrowser1.ControlInterface.ExecWB(OLECMDID_PRINT, OLECMDEXECOPT_PROMPTUSER,
+    vaIn, vaOut);
+  // Show the Print Preview dialog
+  WebBrowser1.ControlInterface.ExecWB(OLECMDID_PRINTPREVIEW,
+    OLECMDEXECOPT_DONTPROMPTUSER, vaIn, vaOut);
+  // Show the Page Setup dialog
+  WebBrowser1.ControlInterface.ExecWB(OLECMDID_PAGESETUP, OLECMDEXECOPT_PROMPTUSER,
+    vaIn, vaOut);

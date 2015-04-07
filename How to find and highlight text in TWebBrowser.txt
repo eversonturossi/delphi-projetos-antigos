@@ -1,0 +1,15 @@
+How to find and highlight text in TWebBrowser. 
+The TWebBrowser has huge capabilities, most of which are not available through properties and settings. Knowing the API of the underlying OLE object can sometimes come in really handy. That's when a simple TForm with a TWebBrowser object can suddenly do more than just navigate sites.
+The Microsoft Internet Explorer object can add a lot to an application. Starting from a simple web site browser to powerful editors and help systems. What you do with it is up to you.
+In this tip WebBrowser1 is of TWebBrowser type and the function searches for text and highlights it if found. The idea is quite simple and logical so understanding this example should be no problem at all. 
+procedure TForm1.SearchAndHighlightText(SearchText: string);
+var
+  iI: Integer;
+begin
+  with WebBrowser1.OleObject.Document.All do
+    for iI := 0 to Length - 1 do
+      if Pos(SearchText, Item(i).InnerText) <> 0 then begin
+        Item(iI).Style.Color := '#FFFF00';
+        Item(iI).ScrollIntoView(True);
+      end;
+end;
