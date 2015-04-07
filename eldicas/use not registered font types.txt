@@ -1,0 +1,21 @@
+...use not registered font types?
+Autor: Thomas Stutz
+1 Comment(s) to this tip [Write new comment]
+[ Print tip ]	 	 
+
+Tip Rating (12): 	 
+     
+
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+  AddFontResource(PChar(ExtractFilePath(ParamStr(0) + 'YourFont.TTF')));
+  SendMessage(HWND_BROADCAST, WM_FONTCHANGE, 0, 0);
+end;
+
+
+procedure TForm1.FormDestroy(Sender: TObject);
+begin
+  RemoveFontResource(PChar(ExtractFilePath(ParamStr(0) + 'YourFont.TTF')));
+  SendMessage(HWND_BROADCAST, WM_FONTCHANGE, 0, 0);
+end;

@@ -1,0 +1,83 @@
+...Create a window with pure API?
+Autor: Thomas Stutz
+[Write new comment]
+[ Print tip ]	 	 
+
+Tip Rating (6): 	 
+     
+
+
+// Put this code in your Project file (*.dpr).
+// Den Code in eine Projekt Datei (*.dpr) einfügen.
+
+program Project1;
+
+uses
+  windows, messages;
+
+
+// Main Window Procedure
+
+function MainWndProc(hWindow: HWND; Msg: UINT; wParam: wParam;
+  lParam: lParam): LRESULT; stdcall; export;
+var
+  ps: TPaintStruct;
+begin
+  Result := 0;
+  case Msg of
+    WM_PAINT:
+      begin
+        BeginPaint(hWindow, ps);
+        SetBkMode(ps.hdc, TRANSPARENT);
+        TextOut(ps.hdc, 10, 10, 'Hello, World!', 13);
+        EndPaint(hWindow, ps);
+      end;
+    WM_DESTROY: PostQuitMessage(0);
+    else
+      begin
+        Result := DefWindowProc(hWindow, Msg, wParam, lParam);
+        Exit;
+      end;
+  end;
+end;
+
+// Main Procedure
+
+var
+  wc: TWndClass;
+  hWindow: HWND;
+  Msg: TMsg;
+begin
+  wc.lpszClassName := 'YourAppClass';
+  wc.lpfnWndProc   := @MainWndProc;
+  wc.Style         := CS_VREDRAW or CS_HREDRAW;
+  wc.hInstance     := hInstance;
+  wc.hIcon         := LoadIcon(0, IDI_APPLICATION);
+  wc.hCursor       := LoadCursor(0, IDC_ARROW);
+  wc.hbrBackground := (COLOR_WINDOW + 1);
+  wc.lpszMenuName  := nil;
+  wc.cbClsExtra    := 0;
+  wc.cbWndExtra    := 0;
+  RegisterClass(wc);
+  hWindow := CreateWindowEx(WS_EX_CONTROLPARENT or WS_EX_WINDOWEDGE,
+    'YourAppClass',
+    'API',
+    WS_VISIBLE or WS_CLIPSIBLINGS or
+    WS_CLIPCHILDREN or WS_OVERLAPPEDWINDOW,
+    CW_USEDEFAULT, 0,
+    400, 300,
+    0,
+    0,
+    hInstance,
+    nil);
+
+  ShowWindow(hWindow, CmdShow);
+  UpDateWindow(hWindow);
+
+  while GetMessage(Msg, 0, 0, 0) do
+  begin
+    TranslateMessage(Msg);
+    DispatchMessage(Msg);
+  end;
+  Halt(Msg.wParam);
+end.

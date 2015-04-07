@@ -1,0 +1,91 @@
+...enable/disable the system menu close button at run-time?
+Autor: Pavel Marek
+[Write new comment]
+[ Print tip ]	 	 
+
+Tip Rating (3): 	 
+     
+
+
+(*
+--- english -------------------------------------------------------------------
+This is a component, so you are free to install it but must not: you can also
+dynamically create an instance of it at runtime.
+--- german --------------------------------------------------------------------
+Es handelt sich hier um eine Komponente. Sie können es wie gewonnt installieren
+oder einfach eine Instanz von der Objektklasse erst zur Laufzeit erzeugen.
+*)
+
+
+
+unit UNoCloseForm;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs;
+
+type
+  TNoCloseForm = class(TComponent)
+  private
+    { Private declarations }
+    FCloseEnabled: boolean;
+    procedure SetCloseEnabled (Value: boolean);
+  protected
+    { Protected declarations }
+  public
+    { Public declarations }
+    constructor Create (AOwner: TComponent); override;
+    destructor Destroy; override;
+    procedure Toggle;
+  published
+    { Published declarations }
+    property CloseEnabled: boolean read FCloseEnabled write SetCloseEnabled default False;
+  end;
+
+procedure Register;
+
+implementation
+
+type THackWinControl = class (TWinControl);
+
+constructor TNoCloseForm.Create (AOwner: TComponent);
+begin
+ inherited Create (AOwner);
+ FCloseEnabled := False;
+ Toggle;
+end;
+
+destructor TNoCloseForm.Destroy;
+begin
+ if (csDesigning in ComponentState) then
+  CloseEnabled:=True;
+ inherited Destroy;
+end;
+
+procedure TNoCloseForm.SetCloseEnabled (Value: boolean);
+begin
+ if Value<>FCloseEnabled then
+  try
+  Toggle;
+  FCloseEnabled := Value;
+  except end;
+end;
+
+procedure TNoCloseForm.Toggle;
+var WCTRL: THackWinControl; LI: LongInt;
+begin
+  if not Assigned(Owner) or (csDesigning in ComponentState) then Exit;
+  WCTRL := THackWinControl (Owner);
+  LI := GetClassLong(WCTRL.Handle, GCL_STYLE);
+  LI := LI xor CS_NOCLOSE;
+  SetClassLong(WCTRL.Handle, GCL_STYLE, LI);
+  WCTRL.RecreateWnd;
+end;
+
+procedure Register;
+begin
+  RegisterComponents('Samples', [TNoCloseForm]);
+end;
+
+end.

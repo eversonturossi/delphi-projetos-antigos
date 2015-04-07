@@ -1,0 +1,23 @@
+function ActiveCaption: string;
+var
+  Handle: THandle;
+  Len: LongInt;
+  Title: string;
+begin
+  Result := '';
+  Handle := GetForegroundWindow;
+  if Handle <> 0 then
+  begin
+    Len := GetWindowTextLength(Handle) + 1;
+    SetLength(Title, Len);
+    GetWindowText(Handle, PChar(Title), Len);
+    ActiveCaption := TrimRight(Title);
+  end;
+end;
+
+{ - - - - - - - - - - - - - - - - - - - - -}
+
+procedure TForm1.Timer1Timer(Sender: TObject);
+begin
+  Label1.Caption := ActiveCaption;
+end;

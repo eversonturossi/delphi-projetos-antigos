@@ -1,0 +1,52 @@
+...get the systems default language?
+Autor: Thomas Stutz
+[Write new comment]
+[ Print tip ]	 	 
+
+Tip Rating (11): 	 
+     
+
+
+function GetWindowsLanguage: string;
+var
+  WinLanguage: array [0..50] of char;
+begin
+  VerLanguageName(GetSystemDefaultLangID, WinLanguage, 50);
+  Result := StrPas(WinLanguage);
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  ShowMessage(GetWindowsLanguage);
+end;
+
+{********************************************************************}
+{ another code:
+{********************************************************************}
+
+function GetWindowsLanguage(LCTYPE: LCTYPE {type of information}): string;
+var
+  Buffer : PChar;
+  Size : integer;
+begin
+  Size := GetLocaleInfo (LOCALE_USER_DEFAULT, LCType, nil, 0);
+  GetMem(Buffer, Size);
+  try
+    GetLocaleInfo (LOCALE_USER_DEFAULT, LCTYPE, Buffer, Size);
+    Result := string(Buffer);
+  finally
+    FreeMem(Buffer);
+  end;
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  Caption := GetWindowsLanguage(LOCALE_SABBREVLANGNAME);
+ (*
+  LOCALE_ILANGUAGE           { language id }
+  LOCALE_SLANGUAGE           { localized name of language }
+  LOCALE_SENGLANGUAGE        { English name of language }
+  LOCALE_SABBREVLANGNAME     { abbreviated language name }
+  LOCALE_SNATIVELANGNAME     { native name of language }
+ *)
+end;

@@ -1,0 +1,25 @@
+...get the position of the current active window?
+Autor: Marco Lange
+[Write new comment]
+[ Print tip ]	 	 
+
+Tip Rating (3): 	 
+     
+
+
+procedure TForm1.Button1Click(Sender: TObject);
+var
+  hWindow: HWnd;
+  r:       TRect;
+begin
+  hWindow := GetForegroundWindow;
+  GetWindowRect(hWindow, r);
+  Memo1.Clear;
+  with Memo1.Lines do
+  begin
+    Add('Top   : ' + IntToStr(r.Top));
+    Add('Left  : ' + IntToStr(r.Left));
+    Add('Bottom: ' + IntToStr(r.Bottom));
+    Add('Right : ' + IntToStr(r.Right));
+  end;
+end;

@@ -1,0 +1,52 @@
+...get the Windows Version? (2)
+Autor: Johan Stokking
+Homepage: http://johan.stokking.nl
+1 Comment(s) to this tip [Write new comment]
+[ Print tip ]	 	 
+
+Tip Rating (23): 	 
+     
+
+
+uses registry;
+
+function GetWindowsVersion: string;
+var
+  VerInfo: TOsversionInfo;
+  PlatformId, VersionNumber: string;
+  Reg: TRegistry;
+begin
+  VerInfo.dwOSVersionInfoSize := SizeOf(VerInfo);
+  GetVersionEx(VerInfo);
+  // Detect platform
+  Reg := TRegistry.Create;
+  Reg.RootKey := HKEY_LOCAL_MACHINE;
+  case VerInfo.dwPlatformId of
+    VER_PLATFORM_WIN32s:
+      begin
+        // Registry (Huh? What registry?)
+        PlatformId := 'Windows 3.1';
+      end;
+    VER_PLATFORM_WIN32_WINDOWS:
+      begin
+        // Registry
+        Reg.OpenKey('\SOFTWARE\Microsoft\Windows\CurrentVersion', False);
+        PlatformId    := Reg.ReadString('ProductName');
+        VersionNumber := Reg.ReadString('VersionNumber');
+      end;
+    VER_PLATFORM_WIN32_NT:
+      begin
+        // Registry
+        Reg.OpenKey('\SOFTWARE\Microsoft\Windows NT\CurrentVersion', False);
+        PlatformId    := Reg.ReadString('ProductName');
+        VersionNumber := Reg.ReadString('CurrentVersion');
+      end;
+  end;
+  Reg.Free;
+  Result := PlatformId + ' (version ' + VersionNumber + ')';
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  Label1.Caption := GetWindowsVersion;
+end;

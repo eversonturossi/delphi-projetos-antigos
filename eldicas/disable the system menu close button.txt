@@ -1,0 +1,19 @@
+...disable the system menu close button?
+Autor: Thomas Stutz
+1 Comment(s) to this tip [Write new comment]
+[ Print tip ]	 	 
+
+Tip Rating (9): 	 
+     
+
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+  EnableMenuItem(GetSystemMenu(Form1.Handle, LongBool(False)),
+    SC_CLOSE, MF_BYCOMMAND or MF_GRAYED);
+end;
+
+{
+  Note: You can still press Alt-F4 to close the form!
+  Achtung: Die Form kann immer noch mit Alt-F4 geschlossen werden!
+}

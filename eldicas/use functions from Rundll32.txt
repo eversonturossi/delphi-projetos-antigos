@@ -1,0 +1,207 @@
+...use functions from Rundll32?
+Autor: Thomas Greiner
+Homepage: http://www.economx.com
+[Write new comment]
+[ Print tip ]	 	 
+
+Tip Rating (33): 	 
+     
+
+
+Call functions from Rundll always like that:
+
+Aufruf von Funktionen aus Rundll stets nach dem Schema aufrufen:
+
+
+
+WinExec(PChar('rundll32 ...'),SW_SHOWNORMAL);
+
+
+
+where rundll32... should be replaced by one of the functions below.
+
+wobei rundll32... natürlich durch eine der unten stehenden Aufrufe ersetzt werden muss.
+
+
+
+* Shutdown Windows:
+
+Windows beenden:
+
+Rundll32.exe user,ExitWindows
+
+
+
+* Install a Screensaver:
+
+Installation eines Bildschirmschoners:
+
+rundll32.exe desk.cpl,InstallScreenSaver c:\windows\system\ssaver.scr
+
+
+
+* Call the Standard newsreader:
+
+Standard Newsreader aufrufen:
+
+rundll32.exe url.dll,NewsProtocolHandler borland.public.delphi.objectpascal
+
+
+
+* Call the Standard Mailprogram:
+
+Standard Mailprogramm aufrufen:
+
+rundll32.exe url.dll,MailToProtocolHandler info@swissdelphicenter.ch
+
+
+
+* Make a Telnet Connection:
+
+Eine Telnetverbindung aufbauen:
+
+rundll32.exe url.dll,TelnetProtocolHandler 172.134.77.119
+
+
+
+* Dialog: Copy Disk:
+
+Dialog: Diskette kopieren aufrufen:
+
+rundll32.exe diskcopy.dll,DiskCopyRunDll
+
+
+
+* Dialog: Format Disk:
+
+Dialog: Diskette formatieren:
+
+rundll32.exe shell32.dll,SHFormatDrive
+
+
+
+* Call a Connection with a configured Connection:
+
+Verbinden mit Dialog einer konfigurierten Verbindung aufrufen:
+
+rundll32.exe rnaui.dll,RnaDial Internetzugang
+
+
+
+* Call Assistants of a Ras-Connection without previous Explanation:
+
+Assistenten für eine DFÜ-Verbindung ohne vorherige Erklärung aufrufen:
+
+rundll32.exe rnaui.dll,RnaWizard @1
+
+
+
+* The same with Explanations:
+
+Das selbe mit Erklärung:
+
+rundll32.exe rnaui.dll,RnaWizard
+
+
+
+* Print a Testpage on a printer:
+
+Eine Testseite auf dem Drucker ausdrucken:
+
+rundll32.exe shell32.dll,SHHelpShortcuts_RunDLL PrintTestPage
+
+
+
+* Call Assistants to install a printer:
+
+Assistenten zur Installation eines Druckers aufrufen:
+
+rundll32.exe shell32.dll,SHHelpShortcuts_RunDLL AddPrinter
+
+
+
+* Call Add/Remove Software:
+
+Eigenschaften Software Hinzufügen/Entfernen aufrufen:
+
+rundll32.exe shell32.dll,Control_RunDLL appwiz.cpl
+
+
+
+* Show Properties for Modems:
+
+Eigenschaften für Modems anzeigen:
+
+rundll32.exe shell32.dll,Control_RunDLL modem.cpl
+
+
+
+* Call Assistants to configure a Modem:
+
+Assistent zum Einrichten eines neuen Modems aufrufen:
+
+rundll32.exe shell32.dll,Control_RunDLL modem.cpl,,add
+
+
+
+* Show the Network configuration:
+
+Netzwerkkonfiguration anzeigen:
+
+rundll32.exe shell32.dll,Control_RunDLL netcpl.cpl
+
+
+
+* Assistant to install hardware
+
+Assistenten zur Hardwareinstallation aufrufen:
+
+rundll32.exe shell32.dll,Control_RunDLL sysdm.cpl @1
+
+
+
+* Properties for the Display:
+
+Eigenschften von Anzeige aufrufen:
+
+
+
+-Background
+
+-Hintergrund:
+
+rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,0
+
+
+
+-Screensaver
+
+-Bildschirmschoner
+
+rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,1
+
+
+
+-Display
+
+-Darstellung
+
+rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,2
+
+
+
+-Settings
+
+-Einstellungen
+
+rundll32.exe shell32.dll,Control_RunDLL desk.cpl,,3
+
+
+
+* Open a file with its associated application :
+
+eine Datei mit assoziierter Anwendung aufrufen:
+
+rundll32.exe url.dll,FileProtocolHandler mydocument.doc
+
+

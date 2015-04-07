@@ -1,0 +1,44 @@
+...get Windows uptime?
+Autor: Simon Grossenbacher
+Homepage: http://www.swissdelphicenter.ch
+2 Comment(s) to this tip [Write new comment]
+[ Print tip ]	 	 
+
+Tip Rating (15): 	 
+     
+
+
+function UpTime: string;
+const
+  ticksperday: Integer    = 1000 * 60 * 60 * 24;
+  ticksperhour: Integer   = 1000 * 60 * 60;
+  ticksperminute: Integer = 1000 * 60;
+  tickspersecond: Integer = 1000;
+var
+  t:          Longword;
+  d, h, m, s: Integer;
+begin
+  t := GetTickCount;
+
+  d := t div ticksperday;
+  Dec(t, d * ticksperday);
+
+  h := t div ticksperhour;
+  Dec(t, h * ticksperhour);
+
+  m := t div ticksperminute;
+  Dec(t, m * ticksperminute);
+
+  s := t div tickspersecond;
+
+  Result := 'Uptime: ' + IntToStr(d) + ' Days ' + IntToStr(h) + ' Hours ' + IntToStr(m) +
+    ' Minutes ' + IntToStr(s) + ' Seconds';
+end;
+
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  label1.Caption := UpTime;
+end;
+
+ 

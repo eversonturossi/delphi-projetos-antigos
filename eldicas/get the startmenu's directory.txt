@@ -1,0 +1,43 @@
+...get the startmenu's directory ?
+Autor: Rainer Kümmerle
+Homepage: http://www.delphimania.de
+[Write new comment]
+[ Print tip ]	 	 
+
+Tip Rating (1): 	 
+     
+
+
+uses
+  ShlObj, ActiveX;
+
+procedure FreePidl(pidl: PItemIDList);
+var
+  allocator: IMalloc;
+begin
+  if Succeeded(SHGetMalloc(allocator)) then
+  begin
+    allocator.Free(pidl);
+    {$IFDEF VER100}
+    allocator.Release;
+    {$ENDIF}
+  end;
+end;
+
+function GetStartMenu: string;
+var
+  pidl: PItemIDList;
+  buf: array[0..MAX_PATH] of Char;
+begin
+  if Succeeded(SHGetSpecialFolderLocation(Form1.Handle, CSIDL_STARTMENU, pidl)) then
+  SHGetPathFromIDList(pidl, buf);
+  Result := StrPas(buf);
+  // The calling application is responsible for freeing the PItemIDList-pointer
+  // with the Shell's IMalloc interface
+  FreePIDL(pidl);
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+  label1.Caption := GetStartMenu;
+end;
