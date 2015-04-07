@@ -1,0 +1,22 @@
+8,12***0Como mudar de nick no IPARTY8***
+Para mudar de nick, vc devera procurar o arquivo "client.ipl",
+usando o LOCALIZAR no menu INICIAR/LOCALIZAR/ARQUIVOS OU PASTAS
+achando, entre nesse arquivo.
+
+Coloque pra ele sempre abrir no NOTEPAD (programa vizualizador de logs)
+
+Onde estiver escrito:
+Avatar  {
+    partyID { -1, 5, 1};
+    nickName "-=>[Seu nick aki]<=-";
+};
+
+Digite o seu nick dentro das aspas e SALVE o arquivo.
+
+Abra o IPARTY e estah pronto...
+
+Sempre q desejar mudar de nick, faça os passos acima.
+
+
+Acesse -> #PatosMG Brasnet
+0,0...................................................................

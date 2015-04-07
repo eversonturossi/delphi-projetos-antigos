@@ -1,0 +1,21 @@
+
+Características do Form de apresentação:
+
+FormTela:
+ BorderStyle : bsNone (Form sem bordas)
+ Position: poScreenCenter (Aparecer no centro da tela)
+
+Image1:
+ Align: alClient (Ocupar todo o Form)
+ Stretch: True (Para Imagem ocupar toda área do Image1)
+
+Timer1:
+ Interval: 2000 (Esperar 2 segundos até fechar o FormTela)
+
+
+
+
+
+15/08/2003
+Glauber A. Dantas
+www.delphix.com.br - glau.a@ig.com.br

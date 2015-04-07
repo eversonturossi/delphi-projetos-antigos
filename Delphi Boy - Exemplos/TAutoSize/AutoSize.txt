@@ -1,0 +1,2 @@
+
+1999 05 - TAutoSize A Component That Automatically Scales Delphi Forms in Any Resolution

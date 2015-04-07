@@ -1,0 +1,33 @@
+program wIRC;
+{**************************************************************}
+{ Sistema de controle de script do wIRC.                       }
+{ A linguagem de script utilizada é um subconjunto da linguagem}
+{Pascal (Innerfuse Pascal Script 2.78), que foi escrita por    }
+{Carlo Kok (ck@carlo-kok.com), que tem seus direitos autorais  }
+{reservados.                                                   }
+{                                                              }
+{ Os principais eventos ocorridos no wIRC são declarados aqui: }
+{                                                              }
+{ OnStart: Ocorre ao iniciar o wIRC;                           }
+{ OnEnd  : Ocorre ao finalizar o wIRC;                         }
+{                                                              }
+{                                                              }
+{                                                              }
+{                                                              }
+{                                                              }
+{                                                              }
+{                                                              }
+{**************************************************************}
+
+procedure OnStart;
+begin
+  Info('Bem vindo ao wIRC');
+end;
+
+procedure OnEnd;
+begin
+end;
+
+begin
+  OnStart;
+end.

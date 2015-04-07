@@ -1,0 +1,362 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0111)http://www.activedelphi.com.br/modules.php?op=modload&name=News&file=article&sid=38&mode=thread&order=0&thold=0 -->
+<HTML><HEAD><TITLE>Usando o Componente Decision Cube :: Active Delphi :: O Site do Programador Delphi</TITLE>
+<META content="text/html; charset=ISO-8859-1" http-equiv=Content-Type>
+<META 
+content="nuke, postnuke, postnuke, free, community, php, portal, opensource, open source, gpl, mysql, sql, database, web site, website, weblog, content management, contentmanagement, web content management, webcontentmanagement" 
+name=KEYWORDS>
+<META content="O Site do Programador Delphi" name=DESCRIPTION>
+<META content=INDEX,FOLLOW name=ROBOTS>
+<META content=document name=resource-type>
+<META content=0 http-equiv=expires>
+<META content="Active Delphi" name=author>
+<META content="Copyright (c) 2001 by Active Delphi" name=copyright>
+<META content="1 days" name=revisit-after>
+<META content=Global name=distribution>
+<META content="Microsoft FrontPage 4.0" name=GENERATOR>
+<META content=General name=rating><LINK href="img/styleNN.css" 
+rel=StyleSheet type=text/css>
+<STYLE type=text/css>@import url( img/style.css );
+</STYLE>
+
+<SCRIPT src="img/showimages.htm" 
+type=text/javascript></SCRIPT>
+
+<SCRIPT src="img/openwindow.htm" 
+type=text/javascript></SCRIPT>
+</HEAD>
+<BODY background=img/main-bg.gif leftMargin=0 topMargin=0 
+marginheight="0" marginwidth="0">
+<p align="center"><b><font size="3">Usando o Componente Decision Cube</font></b></p>
+<p> Decision Cube é um 
+                                Grupo de Componentes para tratamento de dados 
+                                que precisam ser sumariados. Esta representação 
+                                de dados, dependendo da quantidade de dimensões 
+                                (totalizações) pode exigir muito código em 
+                                algumas linguagens de programação, mas o 
+                                Decision Cube torna esse trabalho bem simples, 
+                                economizando preciosas horas ou até dias de 
+                                trabalho.<BR><BR>
+</p>
+                                <P class=subtitulos><FONT 
+                                color=#ff0000><STRONG>Componentes Decision Cube 
+                                </STRONG></FONT></P>
+                                <P class=subtitulos>Supondo que você precise 
+                                fazer um resumo do preço médio de venda por 
+                                produto, sabendo<BR>que estão armazenados na 
+                                tabela PRECOPROD que contém os seguinte campos: 
+                                </P>
+                                <P class=subtitulos>CODTABELA_PRECO char (6) NOT 
+                                NULL ,<BR>CODREGIAO integer NOT NULL ,<BR>VALOR 
+                                number NOT NULL ,<BR>CODPRODUTO char (16) NOT 
+                                NULL <BR>Armazene nesta tabela os seguinte 
+                                valores:</P>
+                                <TABLE border=2 cellPadding=2 width="100%">
+                                <TBODY>
+                                <TR>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>CODPRODUTO</P></TD>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>CODTABELA_PRECO</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>CODREGIAO</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>VALOR</P></TD></TR>
+                                <TR>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>P001</P></TD>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>A0397</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>1</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>150,45</P></TD></TR>
+                                <TR>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>P001</P></TD>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>A0397</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>2</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>430,47</P></TD></TR>
+                                <TR>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>P001</P></TD>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>A0597</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>1</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>240,50</P></TD></TR>
+                                <TR>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>P001</P></TD>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>A0597</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>2</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>510,70</P></TD></TR>
+                                <TR>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>P001</P></TD>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>A0398</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>1</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>217,35</P></TD></TR>
+                                <TR>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>P001</P></TD>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>A0398</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>2</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>418,91</P></TD></TR>
+                                <TR>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>P001</P></TD>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>A0598</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>1</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>225,54</P></TD></TR>
+                                <TR>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>P001</P></TD>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>A0598</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>2</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>398,99</P></TD></TR>
+                                <TR>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>P002</P></TD>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>A0397</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>1</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>118,43</P></TD></TR>
+                                <TR>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>P002</P></TD>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>A0397</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>2</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>413,87</P></TD></TR>
+                                <TR>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>P002</P></TD>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>A0597</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>1</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>200,15</P></TD></TR>
+                                <TR>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>P002</P></TD>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>A0597</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>2</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>410,95</P></TD></TR>
+                                <TR>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>P002</P></TD>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>A0398</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>1</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>198,21</P></TD></TR>
+                                <TR>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>P002</P></TD>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>A0398</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>2</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>399,55</P></TD></TR>
+                                <TR>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>P002</P></TD>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>A0598</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>1</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>214,65</P></TD></TR>
+                                <TR>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>P002</P></TD>
+                                <TD align=middle width="30%">
+                                <P class=subtitulos>A0598</P></TD>
+                                <TD align=middle width="20%">
+                                <P class=subtitulos>2</P></TD>
+                                <TD align=middle width="20%">
+                                <P 
+                                class=subtitulos>402,72</P></TD></TR></TBODY></TABLE>
+                                <P class=subtitulos>1º) Inclua um Formulário. 
+                                Para efeito didático, todos os componentes devem 
+                                permanecer neste formulário. </P>
+                                <P class=subtitulos>2º) Inclua neste formulário 
+                                um Componente TdataBase e configure as seguintes 
+                                propriedades:<BR>AliasName. É o Alias da Base de 
+                                Dados que contém a tabela PRECOPROD </P>
+                                <P class=subtitulos>DataBaseName. Altere para 
+                                dbDecision ou um outro nome que você achar 
+                                conveniente. </P>
+                                <P class=subtitulos>3º) Inclua um Componente 
+                                TDecisionQuery. </P>
+                                <P class=subtitulos>Esse componente é um 
+                                descendente de TQuery com características 
+                                específicas para preparar dados da <BR>Query no 
+                                formato suportado pelo componente TDecisionCube. 
+                                Configue as seguintes propriedades: </P>
+                                <P class=subtitulos>DataBaseName. Informe 
+                                dbDecision ou o conteúdo da propriedade 
+                                DataBaseName do Componente <BR>TDataBase. </P>
+                                <P class=subtitulos>SQL. Informe o seguinte 
+                                statement: SELECT * FROM PRECOPROD </P>
+                                <P class=subtitulos>Dê um duplo click no 
+                                Componente TDecisionQuery. Isso trará o Decision 
+                                Query Editor. </P>
+                                <P class=subtitulos>Em Dimensions deverão 
+                                aparecer os seguintes campos CODREGIAO, 
+                                CODPRODUTO, CODTABELA_PRECO. </P>
+                                <P class=subtitulos>O campo valor deve ser 
+                                arrastado para a lista Summaries. Quando 
+                                solta-lo, aparecerá<BR>as opções disponíveis 
+                                para sumário do campo, basta selecionar Average. 
+                                </P>
+                                <P class=subtitulos>Click o botão OK para fechar 
+                                o Decision Query Editor. </P>
+                                <P class=subtitulos>Active. Altera para True 
+                                (Execução da Query criada no Decision Query 
+                                Editor).<BR>4º) Inclua um Componente 
+                                TdecisionCube. </P>
+                                <P class=subtitulos>TDecisionCube mantém dados 
+                                referentes as dimensões fornececidas pelo 
+                                componente TDecisionQuery ou outro tipo de 
+                                DataSet, para um objeto TDecisionSource. </P>
+                                <P class=subtitulos>TDecisionCube analisa os 
+                                dados de um Dataset para uma estrutura 
+                                multidimensional onde cada dimensão corresponde 
+                                a uma sumarização. </P>
+                                <P class=subtitulos>Qualquer Dataset pode ser 
+                                usado como a origem de um TDecisionCube, porém, 
+                                é mais fácil usar o componente TDecisionQuery. 
+                                TDecisionCube possui propriedades e métodos para 
+                                formatar dados para um componente 
+                                TDecisionSource que, por sua vez, 
+                                disponibilizará para os componentes 
+                                TDecisionGraph e TDecisionGrid</P>
+                                <P><IMG height=244 
+                                src="img/cube1.gif" 
+                                width=300></P>
+                                <P class=subtitulos>Altere as propriedades de 
+                                TDecisionCube como segue: </P>
+                                <P class=subtitulos>DataSet. É o nome do 
+                                componente TDecisionQuery ou outro Dataset usado 
+                                na sua aplicação. No nosso exemplo é 
+                                DecisionQuery1. </P>
+                                <P class=subtitulos>DimensionsMap é um conjunto 
+                                de objetos TCubeDim que descrevem as dimensões e 
+                                sumários do TDecisionCube. Acesse esta 
+                                propriedade e altere a propriedade Display Name 
+                                dos campos envolvidos como segue: </P>
+                                <P class=subtitulos>CODPRODUTO è 
+                                Produto<BR>CODTABELA_PRECO è Tabela<BR>CODREGIAO 
+                                è Região<BR>COLUMN4 è Total<BR>COLUMN5 è Qtde 
+                                </P>
+                                <P class=subtitulos>Average of PRECOPROD.VALOR è 
+                                Média </P>
+                                <P class=subtitulos>Format è Formata o dado a 
+                                ser apresentado. </P>
+                                <P class=subtitulos>COLUMN4 è US$ 0.00 </P>
+                                <P class=subtitulos>Average of PRECOPROD.VALOR è 
+                                US$ 0.00 </P>
+                                <P class=subtitulos>ShowProgress. Se for True, 
+                                mostra o processo de criação das dimensões 
+                                durante a execução através de um formulário com 
+                                indicador de progresso, caso contrário não 
+                                executa este procedimento.</P><IMG height=292 
+                                src="img/cube2.gif" width=400> 
+
+                                <P>&nbsp;</P>
+                                <P class=subtitulos>5º) Inclua um componente 
+                                TDecisionSource e altere as seguintes 
+                                propriedades: </P>
+                                <P class=subtitulos>DecisionCube. É o nome do 
+                                componente DecisionCube ao qual será associado. 
+                                </P>
+                                <P class=subtitulos>SparseCols, SparseRows. 
+                                Indica quando colunas vazias são removidas da 
+                                projeção. Atribua SparseCols, SparseRows para 
+                                False para mostrar somente as dimensões que 
+                                tenham dados sumariados. </P>
+                                <P class=subtitulos>ControlType. Controla como o 
+                                Decision Source responde às mensagem enviadas 
+                                através do reassionamento dos botões de um 
+                                Decision Pivot como segue: </P>
+                                <P class=subtitulos>XtCheck Os botões abrem ou 
+                                fecham uma dimensão individual e mudam o número 
+                                de dimensões abertas.</P>
+                                <P class=subtitulos>xtRadio Os botões de 
+                                dimensão abrem ou fecham a dimensão selecionada 
+                                e finalizam todas as outras dimensões naquela 
+                                direção. Quando ControlType é xtRadio, no máximo 
+                                uma dimensão de linha e uma dimensão de coluna 
+                                podem ser abertas de cada vez. <BR></P>
+                                <P class=subtitulos>xtRadionEx Os botões de 
+                                dimensão abrem a dimensão selecionada e 
+                                finalizam todas as outras dimensões naquela 
+                                direção ou finalizam a dimensão selecionada e 
+                                abrem outra dimensão na mesma direção. Quando 
+                                ControlType é xtRadioEx, exatamente uma dimensão 
+                                de linha e uma dimensão de coluna deve ser 
+                                abertas a qualquer hora.<BR></P>
+                                <P class=subtitulos>6º) Inclua um Componente 
+                                TdecisionPivot: </P>
+                                <P class=subtitulos>TDecisionPivot permite ao 
+                                usuário controlar através de botões as dimensões 
+                                ativas de um Decision Source que são mostrados 
+                                em um TDecisionGrid ou em um TDecisionGraph. 
+</P>
+                                <P class=subtitulos>TdecisionPivot possui também 
+                                um botão para o usuário selecionar o sumário 
+                                atual. </P>
+                                <P class=subtitulos>O pressionamento dos botões 
+                                provoca a abertura ou fechamento das dimensões, 
+                                controlando quando o Decision Source mostra 
+                                dados detalhados daquela dimensão. </P>
+                                <P class=subtitulos>Clicando com o botão direito 
+                                nos botões permite ao usuário aprofundar naquela 
+                                dimensão. Arrastando o botão reajusta o eixo de 
+                                acordo com a nova configuração, bem como, 
+                                arrastando as células de título de um TDecision 
+                                Grid. </P>
+                                <P class=subtitulos><FONT 
+                                color=#ff0000><STRONG>Propriedades 
+                                </STRONG></FONT></P>
+                                <P class=subtitulos>Decision Source. É o 
+                                Decision Source incluído no nosso projeto. </P>
+                                <P class=subtitulos>Agora, se você seguir todos 
+                                os passos corretamente, sua aplicação ficará 
+                                parecida<BR>com o exemplo abaixo: </P>
+                                <P><IMG height=283 
+                                src="img/cube3.gif" 
+                                width=400></P>
+                                <P><EM>Vail Samuel Haddad - DMS 
+                                Informática</EM></P></BODY></HTML>

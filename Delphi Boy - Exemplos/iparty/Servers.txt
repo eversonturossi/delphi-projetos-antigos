@@ -1,0 +1,16 @@
+8,12***0servers do IPARTY8***
+0,1[0 iparty://network.dynip.com/english.ipl 0]
+0,1[11 iparty://24.234.55.181/teens.ipl 0]
+0,1[9 iparty://iparty.nightowl.net 0]
+0,1[8 iparty://24.234.55.181/private2.ipl 0]
+0,1[7 iparty://network.dynip.com/espagnol.ipl 0]
+0,1[13 iparty://207.199.74.83/testtalk.ipl 0]
+0,1[15 iparty://24.234.55.181 0]
+0,1[4 iparty://qryche.mindcryme.com/qryche.ipl 0]
+0,1[11 iparty://zonafull.d2g.com 0]
+0,1[7 iparty://manta-2000.com/safehaven.ipl 0]
+0,1[9 iparty://manta-2000.com/teens.ipl 0]
+0,1[8 iparty://manta-2000.com/cc2k.ipl 0]
+0,1[0 iparty://teendome.dhs.org/brazil.ipl 0]
+0,1[4 iparty://www.suiko-van.or.jp/default.ipl 0]
+0,0.................................................

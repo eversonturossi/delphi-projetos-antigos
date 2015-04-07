@@ -1,0 +1,323 @@
+{*****************************************}
+{  Exemplo usando tabela dinâmica em XML  }
+{  Fontes por Tadeu Torquato da Silva     }
+{  E-mail: tadeutorquato@yahoo.com.br     }
+{  Site: www.delphix.com.br               }
+{  20/01/2004                             }
+{*****************************************}
+
+unit FrmXML_u;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, System.ComponentModel, Borland.Vcl.Grids, Borland.Vcl.DBGrids,
+  Borland.Vcl.Db, Borland.Vcl.DBClient, Borland.Vcl.ExtCtrls,
+  Borland.Vcl.DBCtrls, Borland.Vcl.StdCtrls, Borland.Vcl.ShellAPI,
+  Borland.Vcl.Provider;
+
+type
+  TFrmXML = class(TForm)
+    DBGrid1: TDBGrid;
+    DataSource1: TDataSource;
+    ClientDataSet1: TClientDataSet;
+    DBNavigator1: TDBNavigator;
+    Label1: TLabel;
+    ListBox1: TListBox;
+    Label2: TLabel;
+    EdtDescricao: TEdit;
+    Label3: TLabel;
+    EdtTipo: TComboBox;
+    Label4: TLabel;
+    EdtSize: TEdit;
+    EdtRequerido: TRadioGroup;
+    BtnCriar: TButton;
+    BtnAbrir: TButton;
+    BtnGerar: TButton;
+    BtnAdd: TButton;
+    BtnDel: TButton;
+    procedure BtnAddClick(Sender: TObject);
+    procedure BtnDelClick(Sender: TObject);
+    procedure BtnCriarClick(Sender: TObject);
+    procedure BtnAbrirClick(Sender: TObject);
+    procedure BtnGerarClick(Sender: TObject);
+    procedure ClientDataSet1AfterPost(DataSet: TDataSet);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    function CAMPO(Index: Integer): string;
+    function TIPO(Index: Integer): TFieldType;
+    function TAMANHO(Index: Integer): Integer;
+    function REQUERIDO(Index: Integer): Boolean;
+    procedure LoadCampos();
+  end;
+
+var
+  FrmXML: TFrmXML;
+
+implementation
+
+{$R *.nfm}
+
+{ TFrmXML }
+
+function TFrmXML.CAMPO(Index: Integer): string;
+var
+  X: string;
+begin
+  X := Copy(ListBox1.Items.Strings[Index],1,(Pos(';',ListBox1.Items.Strings[Index]) - 1));
+  Result := X;
+end;
+
+function TFrmXML.REQUERIDO(Index: Integer): Boolean;
+var
+  X, Y, Z: string;
+begin
+  X := Copy(ListBox1.Items.Strings[Index],(Pos(';',ListBox1.Items.Strings[Index]) + 1),Length(ListBox1.Items.Strings[Index]));
+  Y := Copy(X,(Pos(';',X) + 1),Length(X));
+  Z := Copy(Y,(Pos(';',Y)+ 1),Length(y));
+
+  if(Z = 'True')then
+    Result := True
+  else
+  if(Z = 'False')then
+    Result := False;
+end;
+
+function TFrmXML.TAMANHO(Index: Integer): Integer;
+var
+  X, Y, Z: string;
+begin
+  X := Copy(ListBox1.Items.Strings[Index],(Pos(';',ListBox1.Items.Strings[Index]) + 1),Length(ListBox1.Items.Strings[Index]));
+  Y := Copy(X,(Pos(';',X) + 1),Length(X));
+  Z := Copy(Y,0,(Pos(';',Y)-1));
+  Result := StrToInt(Z);
+end;
+
+function TFrmXML.TIPO(Index: Integer): TFieldType;
+var
+  X, Y: string;
+begin
+  X := Copy(ListBox1.Items.Strings[Index],(Pos(';',ListBox1.Items.Strings[Index]) + 1),Length(ListBox1.Items.Strings[Index]));
+  Y := Copy(X,0,(Pos(';',X)-1));
+
+  if(Y = 'ftString')then
+    Result := ftString
+  else
+  if(Y = 'ftInteger')then
+    Result := ftInteger
+  else
+  if(Y = 'ftFloat')then
+    Result := ftFloat
+  else
+  if(Y = 'ftDate')then
+    Result := ftDate
+  else
+  if(Y = 'ftDateTime')then
+    Result := ftDateTime;
+end;
+
+procedure TFrmXML.LoadCampos;
+var
+  I : Integer;
+  Campo, Size, Tipo, Requerido: string;
+begin
+  with ClientDataSet1 do
+  begin
+    if(Active = False)then
+      Exit;
+      
+    if(ListBox1.Items.Count > 0)then
+      ListBox1.Clear;
+
+    for I := 0 to FieldDefs.Count -1 do
+    begin
+      Campo := FieldDefs[I].Name;
+      Size  := IntToStr(FieldDefs[I].Size);
+
+      if(FieldDefs[I].DataType = ftString)then
+        Tipo := 'ftString'
+      else
+      if(FieldDefs[I].DataType = ftInteger)then
+        Tipo := 'ftInteger'
+      else
+      if(FieldDefs[I].DataType = ftFloat)then
+        Tipo := 'ftFloat'
+      else
+      if(FieldDefs[I].DataType = ftDate)then
+        Tipo := 'ftDate'
+      else
+      if(FieldDefs[I].DataType = ftTime)then
+        Tipo := 'ftTime'
+      else
+      if(FieldDefs[I].DataType = ftDateTime)then
+        Tipo := 'ftDateTime';
+
+      if(FieldDefs[I].Required = True)then
+        Requerido := 'True'
+      else Requerido := 'False';
+
+      ListBox1.Items.Add(Campo+';'+Tipo+';'+Size+';'+Requerido);
+    end;
+  end;
+end;
+
+procedure TFrmXML.BtnAddClick(Sender: TObject);
+var
+  Tipo: string;
+begin
+  if(EdtRequerido.ItemIndex = 0)then
+    Tipo := 'True'
+  else
+    Tipo := 'False';
+
+  ListBox1.Items.Add(EdtDescricao.Text+';'+EdtTipo.Text+';'+EdtSize.Text+';'+Tipo);
+  EdtDescricao.Clear;
+  EdtSize.Clear;
+  EdtTipo.ItemIndex := 0;
+  EdtRequerido.ItemIndex := 1;
+end;
+
+procedure TFrmXML.BtnDelClick(Sender: TObject);
+begin
+  ListBox1.Items.Delete(ListBox1.ItemIndex);
+end;
+
+procedure TFrmXML.BtnCriarClick(Sender: TObject);
+var
+  I : integer;
+begin
+  with ClientDataSet1 do
+  begin
+    Close;
+    FieldDefs.Clear;
+    Fields.Clear;
+
+    if(ListBox1.Items.Count > 0)then
+    begin
+      for I := 0 to ListBox1.Items.Count - 1 do
+      begin
+        FieldDefs.Add(CAMPO(I),TIPO(I),TAMANHO(I),REQUERIDO(I));
+      end;
+      CreateDataSet;
+      SaveToFile(ExtractFilePath(ParamStr(0)) + '\Tabela.xml', dfXML);
+      Close;
+    end;
+  end;
+end;
+
+procedure TFrmXML.BtnAbrirClick(Sender: TObject);
+begin
+  with ClientDataSet1 do
+  begin
+    Close;
+    LoadFromFile(ExtractFilePath(ParamStr(0)) + '\Tabela.xml');
+    Open;
+    LoadCampos();
+  end;
+end;
+
+procedure TFrmXML.BtnGerarClick(Sender: TObject);
+var
+  sHTML  : string;
+  iCount, iColuna, iRegistros: Integer;
+  Lista: TStringList;
+begin
+  iColuna := ClientDataSet1.Fields.Count;
+
+  sHTML := '<html>'+#13#10+
+            '<head>'+#13#10+
+            '</head>'+#13#10+
+            '<body>'+#13#10+
+            '<center>'+
+            '<b>'+
+            '<font size="2" face="Verdana, Arial, Helvetica, sans-serif">'+
+            FrmXML.Caption+
+            '</font>'+
+            '</b>'+
+            '</center>'+
+            '<br>'+#13#10+
+            '<table width="100%"  border="1" cellspacing="0" cellpadding="4">'+#13#10+
+            '<tr bgcolor="#000066">';
+
+  iCount:= 0;
+
+  for iCount := 0 to iColuna - 1 do
+  begin
+    sHTML := sHTML +#13#10+
+                   '<th scope="col">'+
+                   '<font color="#FFFFFF" size="1" face="Verdana, Arial, Helvetica, sans-serif">'+
+                   ClientDataSet1.Fields.Fields[iCount].DisplayLabel+
+                   '</font>'+
+                   '</th>';
+  end;
+
+  sHTML := sHTML +#13#10+ '</tr>';
+
+  ClientDataSet1.First;
+  while not ClientDataSet1.Eof do
+  begin
+    sHTML := sHTML +#13#10+ '<tr>';
+    iCount:= 0;
+    for iCount := 0 to iColuna - 1 do
+    begin
+      sHTML := sHTML +#13#10+
+                     '<td>'+
+                     '<div align="center">'+
+                     '<strong>'+
+                     '<font size="1" face="Verdana, Arial, Helvetica, sans-serif">'+
+                     ClientDataSet1.Fields.Fields[iCount].AsString
+                     +'</font>'+
+                     '</strong>'+
+                     '</div>'+
+                     '</td>';
+    end;
+    sHTML := sHTML +#13#10+ '</tr>';
+    ClientDataSet1.Next;
+    Application.ProcessMessages;
+  end;
+
+  sHTML := sHTML + #13#10 + '<strong>'+
+            '<font size="1" face="Verdana, Arial, Helvetica, sans-serif" color="#000000">'+
+            'Total:'+
+            '</font>'+
+            '</strong>' +
+            '<strong>'+
+            '<font size="1" face="Verdana, Arial, Helvetica, sans-serif"  color="#0000FF"> '+
+            IntToStr(ClientDataSet1.RecordCount) +
+            '</font>'+
+            '</strong>'+
+            '</table>'+#13#10;
+
+  sHTML := sHTML + #13#10+ '<br>'+
+            '<div align="center">'+
+            '<strong><font size="1">'+
+            '&copy; '+
+            '<font color="#FF0000">'+
+            'Ted'+
+            '</font>'+
+            'SoftWare'+
+            '</font>'+
+            '</strong>'+
+            '</div>'+
+            '</body>'+#13#10+
+            '</html>';
+
+  Lista := TStringList.Create;
+  try
+   Lista.Text := sHTML;
+   Lista.SaveToFile(ExtractFilePath(ParamStr(0)) + '\XML.html');
+  finally
+   Lista.Free;
+  end;
+  ShellExecute(Handle,'Open','XML.html','',ExtractFilePath(ParamStr(0)),0);
+end;
+
+procedure TFrmXML.ClientDataSet1AfterPost(DataSet: TDataSet);
+begin
+  ClientDataSet1.SaveToFile(ExtractFilePath(ParamStr(0)) + '\Tabela.xml', dfXML);
+end;
+
+end.

@@ -1,0 +1,40 @@
+// This is a model client session .ipl file.  11/3/95
+
+Session {
+    sessID { -1, 2, 1};
+    background "backgnd.bmp";
+};
+
+Avatar  {
+    partyID { -1, 5, 1};
+    nickName "Nick";
+};
+
+ListUsers {
+    partyID { -1, 5, 10};
+    nickName "ListUsers";
+    windowAt { 15, 208, 110, 210 };
+};
+
+SpeechIO {
+    partyID { -1, 5, 9};
+    nickName "SpeechIO";
+    containerID { -1, 5, 1};
+    windowAt { 15, 25, 110, 150 };
+    talkBtnAt { 7, 7, 79, 47};
+    skipBtnAt { 76, 122, 26, 20};
+    micLevelAt { 94, 7, 7, 47};
+    sendAt { 7, 67, 7, 7};
+    receiveAt { 7, 83, 7, 7};
+    queueAt { 7, 104, 94, 7};
+
+};
+
+TextIO {
+    partyID { -1, 5, 8};
+    nickName "TextIO";
+    containerID { -1, 5, 1};
+    windowAt { 144, 25, 471, 394 };
+    textOutAt { 0, 0, 471, 343};
+    textInAt { 0, 369, 471, 25 };
+};

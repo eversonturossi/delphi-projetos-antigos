@@ -1,0 +1,71 @@
+--------------
+- INTRODUÇÃO -
+--------------
+As aplicações multi-tiered (com mais de 2 camadas) normalmente não precisam de preocupações quanto à atualização nos clientes, já que a interface é basicamente web.
+
+Entretanto ainda existem situações onde é mais prático desenvolver uma aplicação com apenas duas camadas (cliente-servidor). Nesses casos, muitas vezes o desenvolvedor tem um trabalho enorme para garantir que todos os clientes estão atualizados.
+
+Pensando nisso, desenvolvi um par de utilitários: um servidor (APPSRV), e um cliente (APPCLIENT) que garantem que os clientes sempre executarão a versão mais recente do aplicativo.
+
+-----------------
+- COMO FUNCIONA -
+-----------------
+O APPSRV ficará numa maquina que guardará a(s) versão(ões) mais nova(s) do(s) executável(is). Uma opção é colocá-lo no próprio servidor de banco de dados.
+
+Na mesma pasta onde estiver o APPSRV, deve ficar um arquivo .INI com as configurações de cada aplicação atendida por aquele servidor (um único APPSRV pode atender a várias aplicações).
+Os executáveis também devem ficar na mesma pasta.
+Em cada máquina-cliente deve haver um APPCLIENT e um arquivo .INI que especifica onde está o APPSRV, e que executável solicitar.
+
+O atalho da aplicação (em cada máquina-cliente) deve apontar para o APPCLIENT, que verificará, pelo arquivo .INI a localização do executável, verificará se a versão que está instalada na maquina é a mais atual, baixará (ou não) a nova versão e a executará automaticamente.
+
+Ainda é possível a apresentação de uma mensagem aos clientes antes da execução da aplicação (avisos em sua maioria), ou mesmo é possível impedir a execução das aplicações-cliente! Lembra aquelas vezes em que você ficava "implorando" aos usuários para pararem um pouco porque você queria fazer manutenção no BD?
+
+Tudo de forma automática!
+
+-------------
+- CONCLUSAO -
+-------------
+Claro que ainda faltam melhoramentos para esses utilitários (multi-threads e compatibilidade com Win2K e WinXP, por exemplo). Mas como estão, já ajudam bastante. Pretendo, no futuro, fazer essas alterações. Mas por enquanto, podem usar e fazer sugestões.
+
+É uma ferramenta open-source (Delphi 4), só peço duas coisas:
+1. Passem qualquer alteração para mim (eu também quero aproveitar ;)!)
+2. Se utilizarem esses programas, dêem-me o crédito, o.k.?
+
+Por falar em créditos, utilizei no APPSRV o componente TRxTrayIcon da bibliotec RxLib. Apenas para facilitar o trabalho de colocar ícones na SystemTray. É uma biblioteca open-source, mas se você não se sentir à vontade em usá-la (ou não quiser instalá-la, é só fazer a exibição dos ícones manualmente (dá um pouquinho de trabalho...).
+
+Abraços,
+José Luís Carneiro
+jlcarneiro@ig.com.br
+
+
+
+
+------------------------------
+- Formatos dos Arquivos .INI -
+------------------------------
+O arquivo APPSRV.INI fica na máquina SERVIDORA e deve ter o seguinte formato:
+SEÇÃO           ENTRADA    VALOR                OBSERVAÇÕES
+--------------------------------------------------------------------------------
+GERAL                                           Ocorre apenas uma vez
+                Porta      Numérico             Contém o número da porta
+
+NOME-APLICACAO                                  Uma para CADA aplicação
+                Aplicacao  Alfa                 Nome da aplicação.
+                                                Deve ser igual ao nome da seção
+                Arquivo    Alfa                 Nome do arquivo a ser copiado
+                                                Formato DOS (8.3)
+                Status     Numérico             Indica se a aplicação está (1)
+                                                ou não (0) disponível
+                Comment    Alfa                 Mensagem para os usuários
+--------------------------------------------------------------------------------
+
+O arquivo APPCLIENT.INI fica na máquina CLIENTE e deve ter o seguinte formato:
+SEÇÃO           ENTRADA    VALOR                OBSERVAÇÕES
+--------------------------------------------------------------------------------
+GERAL                                           Ocorre apenas uma vez
+                Servidor   Alfa                 NOME da máquina servidora
+                Porta      Numérico             Contem o numero da porta
+                Aplicacao  Alfa                 Nome da aplicação
+                Arquivo    Alfa                 Nome do arquivo a ser copiado
+                                                Formato DOS (8.3)
+--------------------------------------------------------------------------------
