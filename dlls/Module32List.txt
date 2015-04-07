@@ -1,0 +1,39 @@
+procedure Module32List(S : TStrings);
+var
+ Module32 : TModuleEntry32;
+ SS       : THandle;
+ Next     : Bool;
+begin
+ //
+ Module32.dwSize := SizeOf(TModuleEntry32);
+ //
+ SS := CreateToolHelp32Snapshot(TH32CS_SNAPMODULE, 0);
+ //
+ If Module32First(SS, Module32) then
+  begin
+ //
+   S.Add(Module32.szExePath);
+   Repeat
+ //
+    Next := Module32Next(SS, Module32);
+ //
+    If Next Then S.Add(Module32.szExePath);
+   Until Not Next;
+  end;
+  CloseHandle(SS);
+end;
+
+
+procedure TForm1.FormCreate(Sender: TObject);
+begin
+ //
+ Module32List(ListBox1.Items);
+end;
+procedure TForm1.Button1Click(Sender: TObject);
+begin
+ //
+ ListBox1.Items.Clear;
+ //
+ Module32List(ListBox1.Items);
+end;
+end.

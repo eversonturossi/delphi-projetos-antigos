@@ -1,0 +1,26 @@
+Function TForm1.OverviewOnDLL(ProcessIDList: TStringList): TStringList;
+var hmodulesnap: THandle;
+me32: TModuleEntry32;
+DWPID: DWord;
+i: Integer;
+s: TStringlist;
+begin
+s := TStringlist.Create;
+begin
+for i := 1 to ProcessIDList.Count -1 do
+begin
+DWPID := StrtoInt(ProcessIDList[i]);
+hmodulesnap := CreateToolhelp32Snapshot(TH32CS_SnapModule, DWPID);
+begin
+me32.dwSize := Sizeof ( ModuleEntry32 );
+if Module32First(hmodulesnap, me32) then
+begin
+s.Add( me32.szModule);
+while Module32Next(hmodulesnap, me32) do
+s.Add( me32.szModule);
+end;
+end;
+end;
+end;
+Result := s;
+end;

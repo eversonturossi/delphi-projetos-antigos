@@ -1,0 +1,71 @@
+unit Unit1;
+interface
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms,
+  Dialogs, ComCtrls, StdCtrls, TlHelp32;
+type
+  TfrmMain = class(TForm)
+    tvReport: TTreeView;
+    btnRefresh: TButton;
+    procedure FormCreate(Sender: TObject);
+    procedure btnRefreshClick(Sender: TObject);
+  private
+    procedure ScanProcess;
+    procedure ScanModules(const th32ProcessID: DWORD);
+  end;
+var
+  frmMain: TfrmMain;
+implementation
+{$R *.dfm}
+{ TForm1 }
+procedure TfrmMain.ScanModules(const th32ProcessID: DWORD);
+var
+  hProcessSnap: HWND;
+  Module: TModuleEntry32;
+  TreeNode: TTreeNode;
+begin
+  TreeNode := nil;
+  hProcessSnap := CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, th32ProcessID);
+  if hProcessSnap <> INVALID_HANDLE_VALUE then
+  try
+    Module.dwSize := SizeOf(TModuleEntry32);
+    if Module32First(hProcessSnap, Module) then
+    repeat
+      if TreeNode = nil then
+        TreeNode := tvReport.Items.AddChild(nil, Module.szExePath +
+          ' [' + IntToStr(Module.hModule) + ']')
+      else
+        tvReport.Items.AddChild(TreeNode, Module.szExePath +
+          ' [' + IntToStr(Module.hModule) + ']');
+    until not Module32Next(hProcessSnap, Module);
+  finally
+    CloseHandle(hProcessSnap);
+  end;
+end;
+procedure TfrmMain.ScanProcess;
+var
+  hProcessSnap: HWND;
+  Entry: TProcessEntry32;
+begin
+  hProcessSnap := CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+  if hProcessSnap <> INVALID_HANDLE_VALUE then
+  try
+    Entry.dwSize := SizeOf(TProcessEntry32);
+    if (Process32First(hProcessSnap, Entry)) then
+    repeat
+      ScanModules(Entry.th32ProcessID);
+    until not Process32Next(hProcessSnap, Entry);
+  finally
+    CloseHandle(hProcessSnap);
+  end;
+end;
+procedure TfrmMain.FormCreate(Sender: TObject);
+begin
+  ScanProcess;
+end;
+procedure TfrmMain.btnRefreshClick(Sender: TObject);
+begin
+  tvReport.Items.Clear;
+  ScanProcess;
+end;
+end.

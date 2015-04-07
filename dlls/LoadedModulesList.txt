@@ -1,0 +1,117 @@
+USES TLHelp32, PsApi
+.............
+ function LoadedModulesList(const List: TStrings; ProcessID: DWORD; HandlesOnly: Boolean; IsWinNT: Boolean): Boolean;
+  // this function don't work under Win9x
+  procedure AddToList(ProcessHandle: THandle; Module: HMODULE);
+  var
+    FileName: array [0..MAX_PATH] of Char;
+    ModuleInfo: TModuleInfo;
+  begin
+    {$IFDEF FPC}
+    if GetModuleInformation(ProcessHandle, Module, ModuleInfo, SizeOf(ModuleInfo)) then
+    {$ELSE}
+    if GetModuleInformation(ProcessHandle, Module, @ModuleInfo, SizeOf(ModuleInfo)) then
+    {$ENDIF FPC}
+    begin
+      if HandlesOnly then
+        List.AddObject('', Pointer(ModuleInfo.lpBaseOfDll))
+      else
+      if GetModuleFileNameEx(ProcessHandle, Module, Filename, SizeOf(Filename)) > 0 then
+        List.AddObject(FileName, Pointer(ModuleInfo.lpBaseOfDll));
+    end;
+  end;
+  // this function don't work under Win9x, because it call AddToList
+  function EnumModulesVQ(ProcessHandle: THandle): Boolean;
+  var
+    MemInfo: TMemoryBasicInformation;
+    Base: PChar;
+    LastAllocBase: Pointer;
+    Res: DWORD;
+  begin
+    Base := nil;
+    LastAllocBase := nil;
+    FillChar(MemInfo, SizeOf(MemInfo), #0);
+    Res := VirtualQueryEx(ProcessHandle, Base, MemInfo, SizeOf(MemInfo));
+    Result := (Res = SizeOf(MemInfo));
+    while Res = SizeOf(MemInfo) do
+    begin
+      if MemInfo.AllocationBase <> LastAllocBase then
+      begin
+        {$IFDEF FPC}
+        if MemInfo._Type = MEM_IMAGE then
+        {$ELSE}
+        if MemInfo.Type_9 = MEM_IMAGE then
+        {$ENDIF FPC}
+          AddToList(ProcessHandle, HMODULE(MemInfo.AllocationBase));
+        LastAllocBase := MemInfo.AllocationBase;
+      end;
+      Inc(Base, MemInfo.RegionSize);
+      Res := VirtualQueryEx(ProcessHandle, Base, MemInfo, SizeOf(MemInfo));
+    end;
+  end;
+  // this function don't work under Win9x, because it call AddToList
+  function EnumModulesPS: Boolean;
+  var
+    ProcessHandle: THandle;
+    Needed: DWORD;
+    Modules: array of THandle;
+    I, Cnt: Integer;
+  begin
+    Result := False;
+    ProcessHandle := OpenProcess(PROCESS_QUERY_INFORMATION or PROCESS_VM_READ, False, ProcessID);
+    if ProcessHandle <> 0 then
+    try
+      Result := EnumProcessModules(ProcessHandle, nil, 0, Needed);
+      if Result then
+      begin
+        Cnt := Needed div SizeOf(HMODULE);
+        SetLength(Modules, Cnt);
+        if EnumProcessModules(ProcessHandle, @Modules[0], Needed, Needed) then
+          for I := 0 to Cnt - 1 do
+            AddToList(ProcessHandle, Modules[I]);
+      end
+      else
+        Result := EnumModulesVQ(ProcessHandle);
+    finally
+      CloseHandle(ProcessHandle);
+    end;
+  end;
+  // under WinNT this function always return False
+  function EnumModulesTH: Boolean;
+  var
+    SnapProcHandle: THandle;
+    Module: TModuleEntry32;
+    Next: Boolean;
+  begin
+    SnapProcHandle := CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, ProcessID);
+    // INVALID_HANDLE_VALUE, if the function failed,
+    // 0 for WinNT (bad design in TLHelp32.pas)
+    Result := (SnapProcHandle <> INVALID_HANDLE_VALUE) and (SnapProcHandle <> 0);
+    if Result then
+    try
+      FillChar(Module, SizeOf(Module), #0);
+      Module.dwSize := SizeOf(Module);
+      Next := Module32First(SnapProcHandle, Module);
+      while Next do
+      begin
+        if HandlesOnly then
+          List.AddObject('', Pointer(Module.hModule))
+        else
+          List.AddObject(Module.szExePath, Pointer(Module.hModule));
+        Next := Module32Next(SnapProcHandle, Module);
+      end;
+    finally
+      CloseHandle(SnapProcHandle);
+    end;
+  end;
+begin
+  List.BeginUpdate;
+  try
+    if IsWinNT then
+      Result := EnumModulesPS
+    else
+      Result := EnumModulesTH;
+  finally
+    List.EndUpdate;
+  end;
+end;

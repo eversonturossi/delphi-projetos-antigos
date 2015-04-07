@@ -1,0 +1,44 @@
+var
+  ModuleSnap: THandle;
+  ModuleEntry32: TModuleEntry32;
+  More: Boolean;
+  VerData, Ver: Pointer;
+  VerStr: String;
+  VerSize, VerLength: Integer;
+
+begin
+  ModuleList.Lines.Clear;
+  ModuleList.Lines.Add('Module, Version');
+  try
+    ModuleSnap := CreateToolhelp32Snapshot(TH32CS_SNAPMODULE,
+    GetCurrentProcessID);
+    if ModuleSnap = -1 then Exit;
+    ModuleEntry32.dwSize := SizeOf(ModuleEntry32);
+    More := Module32First(ModuleSnap, ModuleEntry32);
+    while More do
+    begin
+      VerSize := GetFileVersionInfoSize(ModuleEntry32.szExePath + 1,
+                                        VerLength) 
+      try
+        GetMem(VerData, VerSize);
+        if GetFileVersionInfo(ModuleEntry32.szExePath + 1,
+                                     0, VerSize,
+                                     VerData) then
+        begin
+          VerQueryValue(VerData,
+                        Char('\StringFileInfo\040904E4\FileVersion'
+                        + #0),
+                        Ver, VerLength);
+          SetString(VerStr, PChar(Ver), VerLength);
+          ModuleList.Lines.Add(StrPas(ModuleEntry32.szExePath + 1) 
+		                       + ', ' + VerStr);
+      end;
+    finally
+      FreeMem(VerData);
+    end;
+    More := Module32Next(ModuleSnap, ModuleEntry32);
+  end;
+  finally
+    CloseHandle(ModuleSnap);
+  end;
+end;
