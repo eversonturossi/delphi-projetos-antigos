@@ -1,0 +1,400 @@
+(*------------------------------------------------------------------------------
+        _____           _     ____           _           _____
+       |  _  \         | |  /  __ \         | |         /  ___|
+       | | | |__ _ _ __| | _| /  \/ ___   __| | ___ _ __\ `--.  ___
+       | | | / _` | '__| |/ / |    / _ \ / _` |/ _ \ '__|`--. \/ __|
+       | |/ / (_| | |  |   <| \__/\ (_) | (_| |  __/ |  /\__/ / (__
+       |___/ \__,_|_|  |_|\_\\____/\___/ \__,_|\___|_|  \____/ \___|
+             http://synsecurity.net/ <> http://unremote.org/
+
+             ***********************************************
+             * Author : DarkCoderSc                        *
+             * From : France                               *
+             * E-Mail : DarkCoderSc@SynSecurity.net        *
+             ***********************************************
+
+       Unit Firewall : This unit will add or delete registry value from
+       windows firewall , i code it on the office on windows XP then I
+       dont know if it work on vista , if not just modify the registry
+       path and it should be work , dont forget to credit my work cause
+       now i am starting to be more open source , i trust you !
+
+-------------------------------------------------------------------------------*)
+
+unit UntXP2FW;
+
+interface
+
+Uses Windows,Registry,sysutils;
+
+//For App
+Function addappfw(FilePath,FileName:PAnsiChar):Boolean;
+Function delappfw(FilePath:PAnsiChar):Boolean;
+//For Ports
+Function addportfw(Protocol,Port:PAnsiChar):Boolean;
+Function delportfw(Protocol,Port:PAnsiChar):Boolean;
+//For Other
+Procedure EnableFW;
+Procedure DisableFW;
+Procedure AllowExceptions;
+Procedure DoNotAllowExceptions;
+Procedure DisableNotify;
+Procedure EnableNotify;
+Procedure NotAllowInBoundEchoRequest;
+Procedure AllowInBoundEchoRequest;
+Procedure NotAllowInboundTimeStampRequest;
+Procedure AllowInboundTimeStampRequest;
+Procedure NotAllowInboundMaskRequest;
+Procedure AllowInboundMaskRequest;
+Procedure NotAllowInboundRouterRequest;
+Procedure AllowInboundRouterRequest;
+Procedure NotAllowRedirect;
+Procedure AllowRedirect;
+//---------
+
+implementation
+{For The Application :}
+//------------------------------------------------------------------------------
+{Function to add an application in windows firewall list}
+Function addappfw(FilePath,FileName:PAnsiChar):Boolean;
+var reg : TRegistry;
+Begin
+Try
+reg := TRegistry.Create; // We create the registry class
+reg.RootKey := HKEY_LOCAL_MACHINE; // Heres the root key
+{Now lets open the full firewall app path there is several
+ other methodes to do it , use the one you want me i like
+ this one :p }
+reg.OpenKey('System',True);
+reg.OpenKey('CurrentControlSet',True);
+reg.OpenKey('Services',True);
+reg.OpenKey('SharedAccess',True);
+reg.OpenKey('Parameters',True);
+reg.OpenKey('FirewallPolicy',True);
+reg.OpenKey('StandardProfile',True);
+reg.OpenKey('AuthorizedApplications',True);
+reg.OpenKey('List',True);
+{Now we write our new key with the correct parameters}
+reg.WriteString(FilePath,FilePath+':*:Enabled:'+FileName);
+{Now lets check if key is correctly created}
+if reg.ValueExists(FilePath) Then Result := True Else Result := False;
+Finally Reg.Free;
+End;
+End;
+//------------------------------------------------------------------------------
+{Function to delete an application in windows firewall list}
+Function delappfw(FilePath:PAnsiChar):Boolean;
+var reg : TRegistry;
+Begin
+Try
+reg := TRegistry.Create; // We create the registry class
+reg.RootKey := HKEY_LOCAL_MACHINE;
+reg.OpenKey('System',True);
+reg.OpenKey('CurrentControlSet',True);
+reg.OpenKey('Services',True);
+reg.OpenKey('SharedAccess',True);
+reg.OpenKey('Parameters',True);
+reg.OpenKey('FirewallPolicy',True);
+reg.OpenKey('StandardProfile',True);
+reg.OpenKey('AuthorizedApplications',True);
+reg.OpenKey('List',True);
+{Lets kill the value !!}
+reg.DeleteValue(FilePath);
+{Now lets check if key is correctly deleted}
+if reg.ValueExists(FilePath) Then Result := False Else Result := True;
+Finally Reg.Free;
+End;
+End;
+//------------------------------------------------------------------------------
+{For The Ports :}
+//------------------------------------------------------------------------------
+{This will add a new port in windows firewall rules}
+Function addportfw(Protocol,Port:PAnsiChar):Boolean;
+var reg : TRegistry;
+Begin
+Try
+reg := TRegistry.Create; // We create the registry class
+reg.RootKey := HKEY_LOCAL_MACHINE;
+reg.OpenKey('System',True);
+reg.OpenKey('CurrentControlSet',True);
+reg.OpenKey('Services',True);
+reg.OpenKey('SharedAccess',True);
+reg.OpenKey('Parameters',True);
+reg.OpenKey('FirewallPolicy',True);
+reg.OpenKey('StandardProfile',True);
+reg.OpenKey('GloballyOpenPorts',True);
+reg.OpenKey('List',True);
+reg.WriteString(Port+':'+Protocol,Port+':'+Protocol+':LocalSubNet:Enabled:@xpsperes.dll,-22006');
+{Now lets check if key is correctly created}
+if reg.ValueExists(Port+':'+Protocol) Then Result := True Else Result := False;
+Finally Reg.Free;
+End;
+End;
+//------------------------------------------------------------------------------
+{This will del the port in windows firewall rules}
+Function delportfw(Protocol,Port:PAnsiChar):Boolean;
+var reg : TRegistry;
+Begin
+Try
+reg := TRegistry.Create; // We create the registry class
+reg.RootKey := HKEY_LOCAL_MACHINE;
+reg.OpenKey('System',True);
+reg.OpenKey('CurrentControlSet',True);
+reg.OpenKey('Services',True);
+reg.OpenKey('SharedAccess',True);
+reg.OpenKey('Parameters',True);
+reg.OpenKey('FirewallPolicy',True);
+reg.OpenKey('StandardProfile',True);
+reg.OpenKey('GloballyOpenPorts',True);
+reg.OpenKey('List',True);
+reg.DeleteValue(Port+':'+Protocol); // Kill the value
+{Now lets check if key is correctly deleted}
+if reg.ValueExists(Port+':'+Protocol) Then Result := False Else Result := True;
+Finally Reg.Free;
+End;
+End;
+
+{For Other function for the firewall}
+//------------------------------------------------------------------------------
+Procedure EnableFW;
+var reg : TRegistry;
+Begin
+reg := TRegistry.Create; // We create the registry class
+reg.RootKey := HKEY_LOCAL_MACHINE;
+reg.OpenKey('System',True);
+reg.OpenKey('CurrentControlSet',True);
+reg.OpenKey('Services',True);
+reg.OpenKey('SharedAccess',True);
+reg.OpenKey('Parameters',True);
+reg.OpenKey('FirewallPolicy',True);
+reg.OpenKey('StandardProfile',True);
+{Lets enable it}
+reg.WriteString('EnableFirewall','1');
+End;
+//------------------------------------------------------------------------------
+Procedure DisableFW;
+var reg : TRegistry;
+Begin
+reg := TRegistry.Create; // We create the registry class
+reg.RootKey := HKEY_LOCAL_MACHINE;
+reg.OpenKey('System',True);
+reg.OpenKey('CurrentControlSet',True);
+reg.OpenKey('Services',True);
+reg.OpenKey('SharedAccess',True);
+reg.OpenKey('Parameters',True);
+reg.OpenKey('FirewallPolicy',True);
+reg.OpenKey('StandardProfile',True);
+reg.WriteString('EnableFirewall','0');
+End;
+//------------------------------------------------------------------------------
+Procedure AllowExceptions;
+var reg : TRegistry;
+Begin
+reg := TRegistry.Create; // We create the registry class
+reg.RootKey := HKEY_LOCAL_MACHINE;
+reg.OpenKey('System',True);
+reg.OpenKey('CurrentControlSet',True);
+reg.OpenKey('Services',True);
+reg.OpenKey('SharedAccess',True);
+reg.OpenKey('Parameters',True);
+reg.OpenKey('FirewallPolicy',True);
+reg.OpenKey('StandardProfile',True);
+reg.WriteString('DoNotAllowExceptions','0');
+End;
+//------------------------------------------------------------------------------
+Procedure DoNotAllowExceptions;
+var reg : TRegistry;
+Begin
+reg := TRegistry.Create; // We create the registry class
+reg.RootKey := HKEY_LOCAL_MACHINE;
+reg.OpenKey('System',True);
+reg.OpenKey('CurrentControlSet',True);
+reg.OpenKey('Services',True);
+reg.OpenKey('SharedAccess',True);
+reg.OpenKey('Parameters',True);
+reg.OpenKey('FirewallPolicy',True);
+reg.OpenKey('StandardProfile',True);
+reg.WriteString('DoNotAllowExceptions','1');
+End;
+//------------------------------------------------------------------------------
+Procedure DisableNotify;
+var reg : TRegistry;
+Begin
+reg := TRegistry.Create; // We create the registry class
+reg.RootKey := HKEY_LOCAL_MACHINE;
+reg.OpenKey('System',True);
+reg.OpenKey('CurrentControlSet',True);
+reg.OpenKey('Services',True);
+reg.OpenKey('SharedAccess',True);
+reg.OpenKey('Parameters',True);
+reg.OpenKey('FirewallPolicy',True);
+reg.OpenKey('StandardProfile',True);
+reg.WriteString('DisableNotifications','1');
+End;
+//------------------------------------------------------------------------------
+Procedure EnableNotify;
+var reg : TRegistry;
+Begin
+reg := TRegistry.Create; // We create the registry class
+reg.RootKey := HKEY_LOCAL_MACHINE;
+reg.OpenKey('System',True);
+reg.OpenKey('CurrentControlSet',True);
+reg.OpenKey('Services',True);
+reg.OpenKey('SharedAccess',True);
+reg.OpenKey('Parameters',True);
+reg.OpenKey('FirewallPolicy',True);
+reg.OpenKey('StandardProfile',True);
+reg.WriteString('DisableNotifications','0');
+End;
+//------------------------------------------------------------------------------
+Procedure NotAllowInBoundEchoRequest;
+var reg : TRegistry;
+Begin
+reg := TRegistry.Create; // We create the registry class
+reg.RootKey := HKEY_LOCAL_MACHINE;
+reg.OpenKey('System',True);
+reg.OpenKey('CurrentControlSet',True);
+reg.OpenKey('Services',True);
+reg.OpenKey('SharedAccess',True);
+reg.OpenKey('Parameters',True);
+reg.OpenKey('FirewallPolicy',True);
+reg.OpenKey('StandardProfile',True);
+reg.WriteString('AllowInBoundEchoRequest','0');
+End;
+//------------------------------------------------------------------------------
+Procedure AllowInBoundEchoRequest;
+var reg : TRegistry;
+Begin
+reg := TRegistry.Create; // We create the registry class
+reg.RootKey := HKEY_LOCAL_MACHINE;
+reg.OpenKey('System',True);
+reg.OpenKey('CurrentControlSet',True);
+reg.OpenKey('Services',True);
+reg.OpenKey('SharedAccess',True);
+reg.OpenKey('Parameters',True);
+reg.OpenKey('FirewallPolicy',True);
+reg.OpenKey('StandardProfile',True);
+reg.WriteString('AllowInBoundEchoRequest','1');
+End;
+//------------------------------------------------------------------------------
+Procedure NotAllowInboundTimeStampRequest;
+var reg : TRegistry;
+Begin
+reg := TRegistry.Create; // We create the registry class
+reg.RootKey := HKEY_LOCAL_MACHINE;
+reg.OpenKey('System',True);
+reg.OpenKey('CurrentControlSet',True);
+reg.OpenKey('Services',True);
+reg.OpenKey('SharedAccess',True);
+reg.OpenKey('Parameters',True);
+reg.OpenKey('FirewallPolicy',True);
+reg.OpenKey('StandardProfile',True);
+reg.WriteString('AllowInboundTimeStampRequest','0');
+End;
+//------------------------------------------------------------------------------
+Procedure AllowInboundTimeStampRequest;
+var reg : TRegistry;
+Begin
+reg := TRegistry.Create; // We create the registry class
+reg.RootKey := HKEY_LOCAL_MACHINE;
+reg.OpenKey('System',True);
+reg.OpenKey('CurrentControlSet',True);
+reg.OpenKey('Services',True);
+reg.OpenKey('SharedAccess',True);
+reg.OpenKey('Parameters',True);
+reg.OpenKey('FirewallPolicy',True);
+reg.OpenKey('StandardProfile',True);
+reg.WriteString('AllowInboundTimeStampRequest','1');
+End;
+//------------------------------------------------------------------------------
+Procedure NotAllowInboundMaskRequest;
+var reg : TRegistry;
+Begin
+reg := TRegistry.Create; // We create the registry class
+reg.RootKey := HKEY_LOCAL_MACHINE;
+reg.OpenKey('System',True);
+reg.OpenKey('CurrentControlSet',True);
+reg.OpenKey('Services',True);
+reg.OpenKey('SharedAccess',True);
+reg.OpenKey('Parameters',True);
+reg.OpenKey('FirewallPolicy',True);
+reg.OpenKey('StandardProfile',True);
+reg.WriteString('AllowInboundMaskRequest','0');
+End;
+//------------------------------------------------------------------------------
+Procedure AllowInboundMaskRequest;
+var reg : TRegistry;
+Begin
+reg := TRegistry.Create; // We create the registry class
+reg.RootKey := HKEY_LOCAL_MACHINE;
+reg.OpenKey('System',True);
+reg.OpenKey('CurrentControlSet',True);
+reg.OpenKey('Services',True);
+reg.OpenKey('SharedAccess',True);
+reg.OpenKey('Parameters',True);
+reg.OpenKey('FirewallPolicy',True);
+reg.OpenKey('StandardProfile',True);
+reg.WriteString('AllowInboundMaskRequest','1');
+End;
+//------------------------------------------------------------------------------
+Procedure NotAllowInboundRouterRequest;
+var reg : TRegistry;
+Begin
+reg := TRegistry.Create; // We create the registry class
+reg.RootKey := HKEY_LOCAL_MACHINE;
+reg.OpenKey('System',True);
+reg.OpenKey('CurrentControlSet',True);
+reg.OpenKey('Services',True);
+reg.OpenKey('SharedAccess',True);
+reg.OpenKey('Parameters',True);
+reg.OpenKey('FirewallPolicy',True);
+reg.OpenKey('StandardProfile',True);
+reg.WriteString('AllowInboundMaskRequest','0');
+End;
+//------------------------------------------------------------------------------
+Procedure AllowInboundRouterRequest;
+var reg : TRegistry;
+Begin
+reg := TRegistry.Create; // We create the registry class
+reg.RootKey := HKEY_LOCAL_MACHINE;
+reg.OpenKey('System',True);
+reg.OpenKey('CurrentControlSet',True);
+reg.OpenKey('Services',True);
+reg.OpenKey('SharedAccess',True);
+reg.OpenKey('Parameters',True);
+reg.OpenKey('FirewallPolicy',True);
+reg.OpenKey('StandardProfile',True);
+reg.WriteString('AllowInboundMaskRequest','1');
+End;
+//------------------------------------------------------------------------------
+Procedure NotAllowRedirect;
+var reg : TRegistry;
+Begin
+reg := TRegistry.Create; // We create the registry class
+reg.RootKey := HKEY_LOCAL_MACHINE;
+reg.OpenKey('System',True);
+reg.OpenKey('CurrentControlSet',True);
+reg.OpenKey('Services',True);
+reg.OpenKey('SharedAccess',True);
+reg.OpenKey('Parameters',True);
+reg.OpenKey('FirewallPolicy',True);
+reg.OpenKey('StandardProfile',True);
+reg.WriteString('AllowRedirect','0');
+End;
+//------------------------------------------------------------------------------
+Procedure AllowRedirect;
+var reg : TRegistry;
+Begin
+reg := TRegistry.Create; // We create the registry class
+reg.RootKey := HKEY_LOCAL_MACHINE;
+reg.OpenKey('System',True);
+reg.OpenKey('CurrentControlSet',True);
+reg.OpenKey('Services',True);
+reg.OpenKey('SharedAccess',True);
+reg.OpenKey('Parameters',True);
+reg.OpenKey('FirewallPolicy',True);
+reg.OpenKey('StandardProfile',True);
+reg.WriteString('AllowRedirect','1');
+End;
+
+end.
