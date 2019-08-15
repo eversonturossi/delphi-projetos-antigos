@@ -1,0 +1,7 @@
+Passe o duc.php e duc.txt para um servidor que tenha suporte PHP..
+E não se esqueça de dar permissão total (777) para o arquivo duc.txt
+
+whit3_sh4rk
+http://www.nststuffs.kit.net/
+
+[Darkers Team]
